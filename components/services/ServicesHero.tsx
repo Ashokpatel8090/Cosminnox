@@ -4,30 +4,74 @@ import { motion } from "framer-motion"
 
 export default function ServicesHero() {
   return (
-    <section className="min-h-[70vh] flex items-center justify-center relative overflow-hidden">
+    <section className="relative py-20 md:py-32 bg-gray-100 overflow-hidden">
+      
+      {/* BACKGROUND BLUR EFFECT (SAME AS 'WHY COSMINNOX' SECTION) */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 right-20 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl" />
+        <div
+          className="
+            absolute
+            top-1/2 left-1/2
+            -translate-x-1/2 -translate-y-1/2
+            w-[600px] h-[600px]
+            bg-blue-300/20
+            rounded-full
+            blur-[100px]
+          "
+        />
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 text-center px-6"
-      >
-        <span className="px-4 py-2 rounded-full bg-blue-600/20 text-blue-500 font-semibold">
-          Comprehensive Solutions
-        </span>
+      {/* CONTENT WRAPPER */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center max-w-4xl mx-auto px-2"
+        >
+          
+          {/* HEADING */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-snug">
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
+              Fueling Innovation,
+            </span>
+            <br className="hidden sm:block" />
+            Scaling Startups
+          </h1>
 
-        <h1 className="mt-6 text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Elevate Your Digital Presence
-        </h1>
+          {/* DESCRIPTION */}
+          <p className="mt-6 text-lg md:text-xl text-slate-700 max-w-3xl mx-auto leading-relaxed">
+            COSMINNOX delivers a structured incubation and acceleration ecosystem
+            empowering deep-tech startups to overcome funding gaps, accelerate
+            commercialization, and access world-class infrastructure.
+          </p>
 
-        <p className="mt-6 text-xl text-slate-600 max-w-3xl mx-auto">
-          From web and mobile applications to cloud infrastructure and digital products.
-        </p>
-      </motion.div>
+          {/* CTA BUTTON */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55 }}
+            className="mt-12 flex justify-center"
+          >
+            <button
+              className="
+                px-8 py-3
+                text-base md:text-lg font-semibold
+                rounded-full
+                text-white bg-indigo-600
+                transition-all duration-300
+                hover:bg-indigo-700 hover:scale-[1.04]
+                ring-1 ring-indigo-600/30
+                hover:ring-indigo-500/60
+                shadow-[0_10px_30px_-10px_rgba(79,70,229,0.45)]
+              "
+            >
+              Explore Programs
+            </button>
+          </motion.div>
+
+        </motion.div>
+      </div>
     </section>
   )
 }

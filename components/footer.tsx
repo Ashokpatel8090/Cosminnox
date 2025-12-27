@@ -46,39 +46,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-900 text-slate-300 border-t border-gray-800">
-      {/* ===================== NEWSLETTER ===================== */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-3xl font-bold mb-2">Stay Updated</h3>
-              <p className="text-blue-100">
-                Get the latest insights on tech innovation and digital transformation.
-              </p>
-            </div>
-
-            <form className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg
-                           bg-white/10 border border-white/20
-                           text-white placeholder:text-white/60
-                           focus:outline-none focus:ring-2 focus:ring-white/40"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 rounded-lg font-semibold
-                           bg-white/20 hover:bg-white/30
-                           transition-all duration-300
-                           flex items-center justify-center gap-2"
-              >
-                Subscribe <ArrowRight size={18} />
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+      
 
       {/* ===================== MAIN FOOTER ===================== */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

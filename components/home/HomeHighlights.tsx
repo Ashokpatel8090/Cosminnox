@@ -3,112 +3,221 @@
 import { motion } from "framer-motion"
 import {
   ArrowRight,
-  Code2,
-  Cloud,
-  Zap,
-  Users,
-  Shield,
-  Sparkles,
+  Target, // For Startup Acceleration
+  Telescope, // For Industry-Academia Collaboration
+  Cpu, // For Deep-Tech Focus (Semiconductor/AI)
+  DollarSign, // For Government & Private Funding
 } from "lucide-react"
+import { Clock, TrendingDown, ServerCrash } from "lucide-react"
 import Link from "next/link"
 
-const services = [
+// --- NEW DATA STRUCTURE ---
+const benefits = [
   {
-    icon: Code2,
-    title: "Web Development",
-    desc: "Modern & scalable web apps",
-    href: "/services/web-development",
+    icon: Target,
+    title: "Startup Acceleration",
+    desc: "Expert mentorship, structured growth programs, and tailored resources to push your venture forward.",
+    color: "from-blue-600 to-cyan-500",
   },
   {
-    icon: Cloud,
-    title: "Cloud Solutions",
-    desc: "Secure cloud infrastructure",
-    href: "/services/cloud-solutions",
+    icon: Telescope,
+    title: "Industry-Academia Collaboration",
+    desc: "Bridging cutting-edge research with real-world commercial applications and market access.",
+    color: "from-purple-600 to-pink-500",
   },
   {
-    icon: Zap,
-    title: "Digital Products",
-    desc: "From idea to launch",
-    href: "/services/digital-products",
+    icon: Cpu,
+    title: "Deep-Tech Focus",
+    desc: "Dedicated support for high-impact tech ventures in AI, Robotics, Semiconductors, and Automation.",
+    color: "from-green-500 to-teal-400",
   },
   {
-    icon: Users,
-    title: "Team Extension",
-    desc: "Dedicated tech experts",
-    href: "/services/team-extension",
+    icon: DollarSign,
+    title: "Global Funding Access",
+    desc: "Connecting you with Startup India, NITI Aayog, and a network of global government and private investors.",
+    color: "from-yellow-500 to-orange-500",
   },
 ]
 
-const stats = [
-  { value: "150+", label: "Projects", icon: Sparkles },
-  { value: "50+", label: "Experts", icon: Users },
-  { value: "12+", label: "Years", icon: Shield },
-  { value: "99.9%", label: "Satisfaction", icon: Zap },
+// Framer Motion Variants for Staggered Fade-In
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
+}
+
+const challenges = [
+  {
+    icon: Clock, // Represents delays/slowdowns
+    title: "Funding Delays",
+    desc: "Bureaucratic slowdowns, risk-averse grants, and a critical lack of high-risk investment capital bottleneck early-stage growth.",
+    color: "from-red-600 to-orange-500",
+  },
+  {
+    icon: TrendingDown, // Represents weak strategy/failure
+    title: "Weak Commercialization",
+    desc: "Valuable research often remains unused due to limited industry-academia tie-ups and an over-reliance on incremental, rather than deep, innovation.",
+    color: "from-amber-600 to-yellow-500",
+  },
+  {
+    icon: ServerCrash, // Represents infrastructure deficit
+    title: "Talent & Infrastructure Deficit",
+    desc: "Challenges include brain drain, a lack of sovereign AI compute power, and heavy dependence on costly imported hardware for scaling.",
+    color: "from-gray-600 to-slate-500",
+  },
 ]
 
+// --- UPDATED COMPONENT ---
 export default function HomeHighlights() {
   return (
     <>
-      {/* ================= SERVICES ================= */}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Core Services
-          </h2>
+      {/* ================= SECTION 1: WHY COSMINNOX? (Banner) ================= */}
+      <section className="py-20 md:py-32 bg-gray-100 overflow-hidden relative">
+  <div className="max-w-7xl mx-auto px-4 relative z-10">
+    
+    {/* Subtle Background Effect - Adjusted to a softer color for light background */}
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-300/20 rounded-full blur-[100px]" />
+    
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true, amount: 0.5 }}
+      className="text-center max-w-4xl mx-auto"
+    >
+      <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-snug">
+        Why only{" "}
+        <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
+          COSMINNOX?
+        </span>
+      </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((s, i) => {
-              const Icon = s.icon
+      {/* Text color changed from slate-300 to slate-700 for readability on a light background */}
+      <p className="text-lg md:text-xl text-slate-700 mb-8">
+        India’s startup ecosystem struggles with funding access, mentorship,
+        and commercialization of deep-tech innovations. COSMINNOX bridges this
+        gap by offering structured incubation, investor matchmaking, and
+        industry-academia collaborations to help startups scale and compete globally.
+      </p>
+    </motion.div>
+  </div>
+</section>
+
+      {/* ================= SECTION 2: BENEFITS (Grid) ================= */}
+      <section className="py-12 bg-gray-100 relative z-20"> 
+  <div className="max-w-7xl mx-auto px-4">
+    <h3 className="text-4xl font-bold text-center mb-12 text-slate-800">
+      Benefits of Choosing 
+      {/* Headline Gradient is already correct */}
+      <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent"> COSMINNOX</span> 
+    </h3>
+
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8"
+    >
+      {benefits.map((s, i) => {
+        const Icon = s.icon
+        return (
+          <motion.div
+            key={i}
+            variants={itemVariants}
+            whileHover={{ 
+              y: -8, 
+              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
+            }}
+            transition={{ duration: 0.3 }}
+            // UPDATED: hover:bg-cyan-50 for a clean brand hover color
+            className="group p-8 rounded-3xl bg-white border border-slate-200 shadow-xl flex flex-col hover:bg-cyan-50 transition-all duration-300 cursor-pointer"
+          >
+            <div className={`w-14 h-14 mb-6 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 flex items-center justify-center text-white shadow-xl transition-transform duration-300 group-hover:scale-105`}>
+              <Icon size={28} />
+            </div>
+            <h3 className="text-xl font-bold mb-3 text-slate-900 transition-colors duration-300 group-hover:text-cyan-700">{s.title}</h3>
+
+            <p className="text-slate-600 mb-4 flex-grow">
+              {s.desc}
+            </p>
+          </motion.div>
+        )
+      })}
+    </motion.div>
+  </div>
+</section>
+
+      {/* ================= NEW SECTION: STARTUP CHALLENGES ================= */}
+      <section className="py-12 bg-gray-100 relative">
+        <div className="max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true, amount: 0.1 }}
+            className="text-center max-w-4xl mx-auto mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 leading-snug">
+              Key Startup{" "}
+              {/* UPDATED: Headline gradient changed to brand colors */}
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
+                Challenges
+              </span>
+            </h2>
+
+            <p className="text-lg md:text-xl text-slate-700">
+              Despite India’s rapid startup growth, many businesses fail due to funding bottlenecks, weak commercialization strategies, and limited deep-tech focus.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            // Uses a responsive grid of 1 to 3 columns
+            className="grid sm:grid-cols-1 md:grid-cols-3 gap-8" 
+          >
+            {challenges.map((c, i) => {
+              const Icon = c.icon
               return (
                 <motion.div
                   key={i}
-                  whileHover={{ y: -10 }}
+                  variants={itemVariants}
+                  whileHover={{ y: -5, scale: 1.02, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)" }}
                   transition={{ duration: 0.3 }}
-                  className="p-8 rounded-2xl bg-white border border-blue-200/30 shadow-md flex flex-col"
+                  // Card now uses light background with strong border/shadow
+                  // UPDATED: Hover background changed to light blue brand color
+                  className="p-8 rounded-3xl bg-white border border-slate-200 shadow-xl flex flex-col transition-all duration-300 group hover:bg-blue-50"
                 >
-                  <div className="w-14 h-14 mb-6 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center text-white">
+                  {/* Icon with Brand Gradient Background */}
+                  {/* UPDATED: Icon background gradient changed to brand colors */}
+                  <div className={`w-14 h-14 mb-6 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 flex items-center justify-center text-white shadow-xl`}>
                     <Icon size={28} />
                   </div>
 
-                  <h3 className="text-xl font-bold mb-2">{s.title}</h3>
+                  {/* Text color changed to dark */}
+                  {/* UPDATED: Hover text color changed to deep blue brand color */}
+                  <h3 className="text-xl font-bold mb-3 text-slate-900 group-hover:text-blue-700 transition-colors">{c.title}</h3>
 
-                  <p className="text-slate-600 mb-6 flex-grow">
-                    {s.desc}
+                  {/* Text color changed to dark */}
+                  <p className="text-slate-600 mb-4 flex-grow">
+                    {c.desc}
                   </p>
-
-                  <Link
-                    href={s.href}
-                    className="inline-flex items-center gap-1 text-blue-600 font-semibold hover:gap-2 transition-all"
-                  >
-                    Explore <ArrowRight size={16} />
-                  </Link>
                 </motion.div>
               )
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= STATS ================= */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8 text-center">
-          {stats.map((s, i) => {
-            const Icon = s.icon
-            return (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-white/20 flex items-center justify-center">
-                  <Icon size={32} />
-                </div>
-
-                <div className="text-5xl font-bold">{s.value}</div>
-                <div className="text-blue-100">{s.label}</div>
-              </motion.div>
-            )
-          })}
+          </motion.div>
         </div>
       </section>
     </>
