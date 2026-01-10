@@ -3,6 +3,7 @@
 import HomeHero from "./HomeHero"
 import HomeHighlights from "./HomeHighlights"
 import HomeCTA from "./HomeCTA"
+import FaqSection from "./FAQSection"
 
 export default function HomeContainer() {
   return (
@@ -10,6 +11,7 @@ export default function HomeContainer() {
       <HomeHero />
       <HomeHighlights />
       <HomeCTA />
+      <FaqSection />
     </div>
   )
 }

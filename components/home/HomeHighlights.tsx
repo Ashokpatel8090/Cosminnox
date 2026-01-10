@@ -81,16 +81,16 @@ export default function HomeHighlights() {
   return (
     <>
       {/* ================= SECTION 1: WHY COSMINNOX? (Banner) ================= */}
-      <section className="py-20 md:py-32 bg-gray-100 overflow-hidden relative">
+      <section className="py-10 bg-transparants overflow-hidden relative">
   <div className="max-w-7xl mx-auto px-4 relative z-10">
     
     {/* Subtle Background Effect - Adjusted to a softer color for light background */}
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-300/20 rounded-full blur-[100px]" />
     
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.4 }}
       viewport={{ once: true, amount: 0.5 }}
       className="text-center max-w-4xl mx-auto"
     >
@@ -113,7 +113,7 @@ export default function HomeHighlights() {
 </section>
 
       {/* ================= SECTION 2: BENEFITS (Grid) ================= */}
-      <section className="py-12 bg-gray-100 relative z-20"> 
+      <section className="py-10 bg-transparants relative z-20"> 
   <div className="max-w-7xl mx-auto px-4">
     <h3 className="text-4xl font-bold text-center mb-12 text-slate-800">
       Benefits of Choosing 
@@ -158,7 +158,7 @@ export default function HomeHighlights() {
 </section>
 
       {/* ================= NEW SECTION: STARTUP CHALLENGES ================= */}
-      <section className="py-12 bg-gray-100 relative">
+      <section className="py-12 bg-transparent relative">
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}

@@ -11,19 +11,20 @@ export default function Footer() {
     {
       title: "Services",
       links: [
-        { label: "Web Development", href: "/services" },
-        { label: "App Development", href: "/services" },
-        { label: "Cloud Solutions", href: "/services" },
-        { label: "Digital Products", href: "/services" },
+        { label: "Web Development", href: "/services/web-development" },
+        { label: "App Development", href: "/services/app-development" },
+        { label: "Cloud Solutions", href: "/services/cloud-solutions" },
+        { label: "Digital Products", href: "/services/digital-products" },
       ],
     },
     {
       title: "Company",
       links: [
         { label: "About Us", href: "/about" },
+        { label: "Contact Us", href: "/contact" },
         { label: "Careers", href: "/careers" },
         { label: "Testimonials", href: "/testimonials" },
-        { label: "Blog", href: "#" },
+        // { label: "Blog", href: "#" },
       ],
     },
     {
@@ -31,7 +32,7 @@ export default function Footer() {
       links: [
         { label: "Documentation", href: "#" },
         { label: "Case Studies", href: "/testimonials" },
-        { label: "FAQ", href: "/contact" },
+        { label: "FAQ", href: "/" },
         { label: "Contact", href: "/contact" },
       ],
     },
@@ -57,9 +58,17 @@ export default function Footer() {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
           >
-            <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-              COSMINNOX
-            </h3>
+             <div className="flex items-center gap-3 mb-4">
+              <img
+                src="/logo.png"
+                alt="COSMINNOX logo"
+                className="h-10 w-auto"
+              />
+
+              <h3 className="text-xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                COSMINNOX
+              </h3>
+            </div>
             <p className="text-slate-400 text-sm leading-relaxed">
               Building the future of digital innovation through cutting-edge technology
               and exceptional design.

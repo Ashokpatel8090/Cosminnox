@@ -22,7 +22,7 @@ const PointsGroup = (props) => {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
         <PointMaterial
           transparent
-          color="#8beaff" // Light blue/cyan color for the points
+          color="#8beaff" 
           size={0.015}
           sizeAttenuation={true}
           depthWrite={false}

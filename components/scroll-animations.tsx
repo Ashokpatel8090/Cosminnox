@@ -21,12 +21,12 @@ export function ScrollReveal({ children, className = "", delay = 0 }: ScrollAnim
     const element = elementRef.current
     if (!element) return
 
-    gsap.set(element, { opacity: 0, y: 50 })
+    gsap.set(element, { opacity: 0, y: 20 })
 
     gsap.to(element, {
       opacity: 1,
       y: 0,
-      duration: 0.8,
+      duration: 0.4,
       delay,
       scrollTrigger: {
         trigger: element,

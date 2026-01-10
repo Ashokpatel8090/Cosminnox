@@ -9,14 +9,19 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    transition: {
+      staggerChildren: 0.15,
+    },
   },
 }
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  hover: { y: -10, transition: { duration: 0.3 } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 }
 
 export default function Testimonials() {
@@ -145,12 +150,7 @@ export default function Testimonials() {
           transition={{ duration: 0.8 }}
           className="relative z-10 text-center px-4 sm:px-6 lg:px-8"
         >
-          <motion.div className="mb-6 inline-block">
-            <span className="px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-300/30 dark:border-blue-700/30 text-blue-600 dark:text-blue-400 text-sm font-semibold rounded-full backdrop-blur-sm">
-              Client Success Stories
-            </span>
-          </motion.div>
-
+      
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent mb-6 leading-tight">
             Success Stories & Case Studies
           </h1>
@@ -205,21 +205,22 @@ export default function Testimonials() {
             {testimonials.map((testimonial, index) => (
               <motion.div key={index} variants={cardVariants}>
                 <div className="glass glass-card p-8 rounded-2xl h-full flex flex-col border-t-4 border-t-blue-500 hover:border-t-purple-500 hover:shadow-2xl transition-all duration-300 group">
+                  <div className="flex justify-between">
                   {/* Quote Icon */}
-                  <div className="mb-6 opacity-20 group-hover:opacity-100 transition-opacity">
-                    <Quote className="text-blue-600 dark:text-blue-400" size={32} />
-                  </div>
+                      <div className="mb-6 opacity-20 group-hover:opacity-100 transition-opacity">
+                        <Quote className="text-blue-600 dark:text-blue-400" size={32} />
+                      </div>
 
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-6">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-
+                      {/* Stars */}
+                      <div className="flex gap-1 mb-6">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />
+                        ))}
+                      </div>
+                    </div>
                   {/* Quote */}
                   <p className="text-slate-600 dark:text-slate-300 flex-grow mb-8 text-base leading-relaxed">
-                    "{testimonial.content}"
+                    {testimonial.content}
                   </p>
 
                   {/* Author */}
@@ -315,37 +316,61 @@ export default function Testimonials() {
 
                     {/* Metrics Side */}
                     <div
-                      className={`p-12 bg-gradient-to-br ${caseStudy.color} bg-opacity-5 dark:bg-opacity-10 flex flex-col justify-center ${
-                        index % 2 === 1 ? "lg:order-1" : ""
-                      }`}
-                    >
-                      <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">Results Achieved</h4>
-                      <div className="space-y-6">
-                        {caseStudy.metrics.map((metric, i) => (
-                          <div key={i} className="group">
-                            <div className="flex items-baseline justify-between mb-2">
-                              <span className="text-slate-600 dark:text-slate-400 font-medium">{metric.label}</span>
-                              <div className="flex items-center gap-2">
-                                <span
-                                  className={`text-4xl font-bold bg-gradient-to-r ${caseStudy.color} bg-clip-text text-transparent`}
-                                >
-                                  {metric.value}
-                                </span>
-                                {metric.trend === "up" && <TrendingUp className="text-green-500" size={24} />}
-                              </div>
-                            </div>
-                            <div className="h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-                              <motion.div
-                                initial={{ width: 0 }}
-                                whileInView={{ width: "100%" }}
-                                transition={{ duration: 0.8, delay: i * 0.2 }}
-                                className={`h-full bg-gradient-to-r ${caseStudy.color}`}
-                              />
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+  className={`relative p-12 overflow-hidden flex flex-col justify-center ${
+    index % 2 === 1 ? "lg:order-1" : ""
+  }`}
+>
+  {/* ===== Background Layer ===== */}
+  <div
+    className={`absolute inset-0 bg-gradient-to-br ${caseStudy.color} opacity-5 dark:opacity-10`}
+  />
+
+  {/* ===== Content Layer ===== */}
+  <div className="relative z-10">
+    <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+      Results Achieved
+    </h4>
+
+    <div className="space-y-6">
+      {caseStudy.metrics.map((metric, i) => (
+        <div key={i} className="group">
+          
+          {/* Metric Header */}
+          <div className="flex items-baseline justify-between mb-2">
+            <span className="text-slate-700 dark:text-slate-300 font-medium">
+              {metric.label}
+            </span>
+
+            <div className="flex items-center gap-2">
+              <span
+                className={`text-3xl font-bold bg-gradient-to-r ${caseStudy.color} bg-clip-text text-transparent`}
+              >
+                {metric.value}
+              </span>
+
+              {metric.trend === "up" && (
+                <TrendingUp className="text-green-500" size={22} />
+              )}
+            </div>
+          </div>
+
+          {/* Progress Bar */}
+          <div className="h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: i * 0.2 }}
+              className={`h-full bg-gradient-to-r ${caseStudy.color}`}
+            />
+          </div>
+
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
                   </div>
                 </motion.div>
               </ScrollReveal>

@@ -48,33 +48,8 @@ export default function Careers() {
       salary: "$200K - $250K",
       color: "from-cyan-500 to-blue-500",
     },
-    {
-      title: "DevOps Engineer",
-      department: "Engineering",
-      location: "Remote",
-      type: "Full-time",
-      experience: "4+ years",
-      salary: "$150K - $190K",
-      color: "from-blue-500 to-purple-500",
-    },
-    {
-      title: "Business Analyst",
-      department: "Strategy",
-      location: "Boston, MA",
-      type: "Full-time",
-      experience: "3+ years",
-      salary: "$110K - $150K",
-      color: "from-purple-600 to-cyan-600",
-    },
-    {
-      title: "QA Automation Specialist",
-      department: "Quality",
-      location: "Remote",
-      type: "Full-time",
-      experience: "2+ years",
-      salary: "$100K - $140K",
-      color: "from-cyan-600 to-blue-600",
-    },
+    
+    
   ]
 
   const benefits = [
@@ -127,9 +102,6 @@ export default function Careers() {
           className="relative z-10 text-center px-4 sm:px-6 lg:px-8"
         >
           <motion.div className="mb-6 inline-block">
-            <span className="px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-300/30 dark:border-blue-700/30 text-blue-600 dark:text-blue-400 text-sm font-semibold rounded-full backdrop-blur-sm">
-              Join Our Team
-            </span>
           </motion.div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent mb-6 leading-tight">
@@ -206,7 +178,7 @@ export default function Careers() {
       </section>
 
       {/* Open Positions */}
-      <section className="py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
+      <section className="py-10 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="text-center mb-20">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
