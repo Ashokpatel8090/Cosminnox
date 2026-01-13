@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 export default function ServicesHero() {
   return (
-    <section className="relative py-20 md:py-32 bg-gray-100 overflow-hidden">
+    <section className="relative pb-10 pt-28 bg-gray-100 overflow-hidden">
       
       {/* BACKGROUND BLUR EFFECT (SAME AS 'WHY COSMINNOX' SECTION) */}
       <div className="absolute inset-0">
@@ -69,7 +69,6 @@ export default function ServicesHero() {
               Explore Programs
             </button>
           </motion.div>
-
         </motion.div>
       </div>
     </section>

@@ -35,14 +35,13 @@ export default function AboutStoryTimeline() {
   return (
     <>
       {/* ================= STORY ================= */}
-      <section className="py-24 bg-background text-foreground">
+      <section className="py-16 bg-background text-foreground">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
           <ScrollReveal>
             <div>
               <h2 className="text-5xl font-bold mb-6 text-gradient-animated">
                 Empowering India’s Deep-Tech Startups
               </h2>
-
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                 <span className="font-semibold text-xl bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent mt-6 mb-6 leading-tight">COSMINNOX </span>  accelerates AI, robotics, and deep-tech startups by
                 bridging cutting-edge research with real-world commercialization.
@@ -50,7 +49,6 @@ export default function AboutStoryTimeline() {
                 and world-class infrastructure to support both early and growth-stage
                 ventures.
               </p>
-
               <p className="text-lg text-muted-foreground leading-relaxed">
                 India’s deep-tech ecosystem often faces funding delays, weak industry
                 integration, and infrastructure gaps. COSMINNOX closes this gap—
@@ -58,7 +56,6 @@ export default function AboutStoryTimeline() {
               </p>
             </div>
           </ScrollReveal>
-
           <ParallaxSection>
             <div className="grid grid-cols-2 gap-6">
               {[
@@ -67,20 +64,55 @@ export default function AboutStoryTimeline() {
                 "Industry Access",
                 "Startup Acceleration",
               ].map((stat, i) => (
-                <div
+                <motion.div
                   key={i}
-                  className="glass-card hover-lift p-8 rounded-2xl text-center border border-border"
+                  whileHover={{ y: -8 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 18 }}
+                  className="
+                    relative
+                    group
+                    h-full
+                    rounded-2xl
+                    border border-border
+                    bg-background
+                    p-8
+                    flex items-center justify-center
+                    text-center
+                    overflow-hidden
+                    shadow-sm
+                    hover:shadow-xl
+                    transition-all duration-300
+                  "
                 >
-                  <div className="text-xl font-semibold text-foreground">
-                    {stat}
+                  {/* ===== Hover Gradient Glow ===== */}
+                  <div
+                    className="
+                      absolute inset-0
+                      bg-gradient-to-br
+                      from-blue-500/10
+                      via-purple-500/10
+                      to-cyan-500/10
+                      opacity-0
+                      group-hover:opacity-100
+                      transition-opacity duration-300
+                    "
+                  />
+
+                  {/* ===== Content ===== */}
+                  <div className="relative z-10">
+                    <div className="flex justify-center mb-4">
+                      <Zap className="w-7 h-7 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div className="text-lg font-semibold text-foreground">
+                      {stat}
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </ParallaxSection>
         </div>
       </section>
-
       {/* ================= TIMELINE ================= */}
 
     </>

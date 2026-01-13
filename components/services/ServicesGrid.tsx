@@ -308,7 +308,7 @@ export default function ServicesGrid() {
   ]
 
   return (
-     <section className="relative z-20 py-20 bg-gradient-to-b from-slate-50 via-white to-slate-100 overflow-hidden">
+     <section className="relative z-20 py-10 bg-gradient-to-b from-slate-50 via-white to-slate-100 overflow-hidden">
       {/* ===== BACKGROUND GLOW ===== */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[900px] h-[900px] bg-cyan-200/30 rounded-full blur-[160px]" />
@@ -317,7 +317,7 @@ export default function ServicesGrid() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ===================== HEADING ===================== */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h3 className="text-4xl md:text-5xl font-extrabold text-slate-900">
             Our Core{" "}
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">

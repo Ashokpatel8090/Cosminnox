@@ -20,13 +20,17 @@ export default function AboutHero() {
         className="relative z-10 text-center px-6 max-w-4xl"
       >
         {/* Heading */}
-        <h1 className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent mt-6 mb-6 leading-tight">
-          Building Meaningful <br className="hidden sm:block" /> <span className="text-6xl">Digital Experiences</span> 
-        </h1>
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-snug">
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
+              Building Meaningful
+            </span>
+            <br className="hidden sm:block" />
+            Digital Experiences
+          </h1>
 
         {/* Description */}
         <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto mb-6">
-          Since 2012, we’ve partnered with forward-thinking businesses to design, build, and scale
+          Since 2024, we’ve partnered with forward-thinking businesses to design, build, and scale
           digital products that are reliable, human-centric, and future-ready.
         </p>
 

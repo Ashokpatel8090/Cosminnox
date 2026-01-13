@@ -1,451 +1,498 @@
-// "use client"
+// import AboutHero from "@/components/about/AboutHero"
+// import AboutStoryTimeline from "@/components/about/AboutStoryTimeline"
+// import AboutValuesTeam from "@/components/about/AboutValuesTeam"
+// import AboutCultureCTA from "@/components/about/AboutCultureCTA"
 
-// import { motion } from "framer-motion"
-// import { Award, Lightbulb, Target, Users, ArrowRight, Linkedin, Mail, Zap, Globe, Code2 } from "lucide-react"
-// import { ScrollReveal, ParallaxSection } from "@/components/scroll-animations"
-// import Link from "next/link"
-
-// const containerVariants = {
-//   hidden: { opacity: 0 },
-//   visible: {
-//     opacity: 1,
-//     transition: { staggerChildren: 0.15, delayChildren: 0.2 },
-//   },
-// }
-
-// const itemVariants = {
-//   hidden: { opacity: 0, y: 20 },
-//   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-// }
-
-// export default function About() {
-//   const values = [
-//     {
-//       icon: Lightbulb,
-//       title: "Innovation First",
-//       description: "We constantly push boundaries and explore new technologies to deliver cutting-edge solutions.",
-//       color: "from-blue-500 to-cyan-500",
-//     },
-//     {
-//       icon: Target,
-//       title: "Goal Oriented",
-//       description: "Every project is aligned with your business objectives and measured by real results.",
-//       color: "from-purple-500 to-pink-500",
-//     },
-//     {
-//       icon: Users,
-//       title: "Collaboration",
-//       description: "We work as an extension of your team, ensuring transparent communication and partnership.",
-//       color: "from-cyan-500 to-blue-500",
-//     },
-//     {
-//       icon: Award,
-//       title: "Quality Excellence",
-//       description: "Attention to detail and commitment to quality is embedded in everything we deliver.",
-//       color: "from-purple-500 to-blue-500",
-//     },
-//   ]
-
-//   const teamMembers = [
-//     {
-//       name: "Sarah Chen",
-//       role: "Founder & CEO",
-//       expertise: "Strategic Leadership, Full-Stack Development",
-//       bio: "Visionary leader with 15+ years in digital transformation.",
-//     },
-//     {
-//       name: "Marcus Johnson",
-//       role: "CTO",
-//       expertise: "Cloud Architecture, DevOps, System Design",
-//       bio: "Enterprise architect specializing in scalable systems.",
-//     },
-//     {
-//       name: "Emma Rodriguez",
-//       role: "Head of Design",
-//       expertise: "UI/UX Design, Product Strategy",
-//       bio: "Design innovator crafting beautiful user experiences.",
-//     },
-//     {
-//       name: "David Kim",
-//       role: "Lead Developer",
-//       expertise: "React, Next.js, Performance Optimization",
-//       bio: "Full-stack expert passionate about clean code.",
-//     },
-//     {
-//       name: "Jessica White",
-//       role: "Project Manager",
-//       expertise: "Agile, Team Management, Client Relations",
-//       bio: "Ensures seamless delivery and client satisfaction.",
-//     },
-//     {
-//       name: "Alex Thompson",
-//       role: "QA Lead",
-//       expertise: "Testing Strategy, Automation, Quality Assurance",
-//       bio: "Quality guardian ensuring excellence at every step.",
-//     },
-//   ]
-
-//   const milestones = [
-//     { year: "2012", title: "Founded", description: "COSMINNOX established with a vision to innovate." },
-//     { year: "2015", title: "Growth Phase", description: "Expanded team and opened new office locations." },
-//     { year: "2018", title: "Industry Recognition", description: "Awarded Best IT Solutions Provider." },
-//     { year: "2023", title: "Global Expansion", description: "Serving 500+ clients across 30+ countries." },
-//   ]
-
+// export default function AboutPage() {
 //   return (
-//     <div className="pt-20 overflow-hidden bg-white dark:bg-slate-950">
-//       {/* Hero Section */}
-//       <section className="min-h-[70vh] flex items-center justify-center relative overflow-hidden">
-//         <div className="absolute inset-0">
-//           <div className="absolute top-20 right-20 w-96 h-96 bg-blue-400/20 dark:bg-blue-600/15 rounded-full blur-3xl" />
-//           <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-400/20 dark:bg-purple-600/15 rounded-full blur-3xl" />
-//           <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-cyan-400/15 dark:bg-cyan-600/10 rounded-full blur-3xl" />
-//         </div>
-
-//         <motion.div
-//           initial={{ opacity: 0, y: 20 }}
-//           animate={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.8 }}
-//           className="relative z-10 text-center px-4 sm:px-6 lg:px-8"
-//         >
-//           <motion.div className="mb-6 inline-block">
-//             <span className="px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-300/30 dark:border-blue-700/30 text-blue-600 dark:text-blue-400 text-sm font-semibold rounded-full backdrop-blur-sm">
-//               About Our Story
-//             </span>
-//           </motion.div>
-
-//           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent mb-6 leading-tight">
-//             Building Tomorrow, Today
-//           </h1>
-//           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-//             Pioneering digital transformation since 2012. A team of passionate innovators dedicated to delivering
-//             excellence and driving real business impact.
-//           </p>
-//         </motion.div>
-//       </section>
-
-//       {/* Story Section with Enhanced Layout */}
-//       <section className="py-24 bg-white dark:bg-slate-950">
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//           <div className="grid lg:grid-cols-2 gap-16 items-center">
-//             <ScrollReveal>
-//               <div>
-//                 <span className="text-sm font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest">
-//                   Our Story
-//                 </span>
-//                 <h2 className="text-5xl font-bold text-slate-900 dark:text-white mt-4 mb-8 leading-tight">
-//                   Founded on Innovation and Excellence
-//                 </h2>
-//                 <p className="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-//                   COSMINNOX was born from a vision to transform how businesses leverage technology. Starting with a
-//                   small team of passionate developers and designers, we&apos;ve grown into a trusted partner for
-//                   enterprises seeking digital excellence.
-//                 </p>
-//                 <p className="text-lg text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-//                   Today, we work with leading companies across diverse industries, delivering solutions that merge
-//                   strategic insight with technical brilliance. Our commitment to innovation and quality has helped us
-//                   maintain a 99.9% client satisfaction rate.
-//                 </p>
-//                 <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-//                   We believe in sustainable growth, long-term partnerships, and technology that genuinely solves
-//                   problems. Every project we undertake is an opportunity to push boundaries and create impact.
-//                 </p>
-//                 <Link
-//                   href="/contact"
-//                   className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-blue-500/40 transition-smooth"
-//                 >
-//                   Work With Us <ArrowRight size={18} />
-//                 </Link>
-//               </div>
-//             </ScrollReveal>
-
-//             <ParallaxSection offset={30}>
-//               <div className="grid grid-cols-2 gap-6">
-//                 {[
-//                   { value: "12+", label: "Years of Excellence" },
-//                   { value: "150+", label: "Projects Delivered" },
-//                   { value: "50+", label: "Team Members" },
-//                   { value: "99.9%", label: "Client Satisfaction" },
-//                 ].map((stat, i) => (
-//                   <motion.div
-//                     key={i}
-//                     whileHover={{ y: -8 }}
-//                     className="glass glass-card p-8 rounded-2xl text-center border-2 border-blue-200/30 dark:border-blue-800/30 glow-blue"
-//                   >
-//                     <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-//                       {stat.value}
-//                     </div>
-//                     <p className="text-slate-600 dark:text-slate-400 font-medium">{stat.label}</p>
-//                   </motion.div>
-//                 ))}
-//               </div>
-//             </ParallaxSection>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Timeline Section */}
-//       <section className="py-24 bg-gradient-to-br from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//           <ScrollReveal className="text-center mb-20">
-//             <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
-//               Our Journey
-//             </h2>
-//             <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-//               From startup to industry leader, here&apos;s how we&apos;ve grown and evolved.
-//             </p>
-//           </ScrollReveal>
-
-//           <div className="relative">
-//             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-600 to-purple-600 hidden md:block" />
-
-//             <div className="space-y-12">
-//               {milestones.map((milestone, idx) => (
-//                 <ScrollReveal key={idx} delay={idx * 0.1}>
-//                   <motion.div
-//                     whileHover={{ x: idx % 2 === 0 ? -16 : 16 }}
-//                     className={`flex gap-8 items-center ${idx % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
-//                   >
-//                     <div className={`flex-1 ${idx % 2 === 0 ? "text-right" : "text-left"}`}>
-//                       <div className="glass glass-card p-8 rounded-2xl border-2 border-blue-200/30 dark:border-blue-800/30 h-full">
-//                         <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-//                           {milestone.year}
-//                         </div>
-//                         <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{milestone.title}</h3>
-//                         <p className="text-slate-600 dark:text-slate-400 text-lg">{milestone.description}</p>
-//                       </div>
-//                     </div>
-//                     <div className="hidden md:flex w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 items-center justify-center flex-shrink-0 shadow-lg">
-//                       <Zap className="text-white" size={24} />
-//                     </div>
-//                     <div className="flex-1" />
-//                   </motion.div>
-//                 </ScrollReveal>
-//               ))}
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Values Section - Enhanced Grid */}
-//       <section className="py-24 bg-white dark:bg-slate-950">
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//           <ScrollReveal className="text-center mb-20">
-//             <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
-//               Core Values
-//             </h2>
-//             <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-//               These principles guide every decision we make and shape our company culture.
-//             </p>
-//           </ScrollReveal>
-
-//           <motion.div
-//             variants={containerVariants}
-//             initial="hidden"
-//             whileInView="visible"
-//             viewport={{ once: true }}
-//             className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
-//           >
-//             {values.map((value, index) => {
-//               const Icon = value.icon
-//               return (
-//                 <motion.div key={index} variants={itemVariants}>
-//                   <motion.div
-//                     whileHover={{ y: -12 }}
-//                     className="glass glass-card p-8 rounded-2xl h-full border-2 border-blue-200/30 dark:border-blue-800/30 hover:shadow-2xl transition-all group"
-//                   >
-//                     <div
-//                       className={`w-16 h-16 rounded-xl bg-gradient-to-br ${value.color} flex items-center justify-center mb-6 glow-blue group-hover:scale-110 transition-transform`}
-//                     >
-//                       <Icon className="text-white" size={32} />
-//                     </div>
-//                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">{value.title}</h3>
-//                     <p className="text-slate-600 dark:text-slate-400 leading-relaxed">{value.description}</p>
-//                   </motion.div>
-//                 </motion.div>
-//               )
-//             })}
-//           </motion.div>
-//         </div>
-//       </section>
-
-//       {/* Team Gallery Section */}
-//       <section className="py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//           <ScrollReveal className="text-center mb-20">
-//             <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
-//               Meet Our Team
-//             </h2>
-//             <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-//               Brilliant minds driving innovation and excellence across our organization.
-//             </p>
-//           </ScrollReveal>
-
-//           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-//             {teamMembers.map((member, index) => (
-//               <ScrollReveal key={index} delay={index * 0.08}>
-//                 <motion.div
-//                   whileHover={{ y: -12 }}
-//                   className="glass glass-card rounded-3xl overflow-hidden group border-2 border-blue-200/30 dark:border-blue-800/30 hover:shadow-2xl transition-all duration-300"
-//                 >
-//                   {/* Image Placeholder */}
-//                   <div className="relative h-72 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-500 overflow-hidden flex items-center justify-center">
-//                     <div className="text-center text-white">
-//                       <div className="text-6xl font-bold opacity-20 mb-2">
-//                         {member.name
-//                           .split(" ")
-//                           .map((n) => n[0])
-//                           .join("")}
-//                       </div>
-//                       <p className="text-white/60">{member.role}</p>
-//                     </div>
-//                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-4 gap-3">
-//                       <a href="#" className="p-3 bg-white/20 hover:bg-white/30 rounded-lg transition-colors">
-//                         <Linkedin size={20} className="text-white" />
-//                       </a>
-//                       <a href="#" className="p-3 bg-white/20 hover:bg-white/30 rounded-lg transition-colors">
-//                         <Mail size={20} className="text-white" />
-//                       </a>
-//                     </div>
-//                   </div>
-
-//                   {/* Info */}
-//                   <div className="p-8">
-//                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{member.name}</h3>
-//                     <p className="text-blue-600 dark:text-blue-400 font-bold text-sm mb-3">{member.role}</p>
-//                     <p className="text-slate-600 dark:text-slate-400 text-sm mb-4">{member.bio}</p>
-//                     <p className="text-xs text-slate-500 dark:text-slate-500 font-medium">{member.expertise}</p>
-//                   </div>
-//                 </motion.div>
-//               </ScrollReveal>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Culture Section */}
-//       <section className="py-24 bg-white dark:bg-slate-950">
-//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//           <div className="grid lg:grid-cols-2 gap-16 items-center">
-//             <ScrollReveal>
-//               <div className="space-y-8">
-//                 <div>
-//                   <h2 className="text-5xl font-bold text-slate-900 dark:text-white mb-6">Our Culture</h2>
-//                   <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-//                     At COSMINNOX, we foster an environment of continuous learning, collaboration, and growth. Our team
-//                     members are empowered to innovate, take ownership, and make a real impact.
-//                   </p>
-//                 </div>
-
-//                 <div className="space-y-4">
-//                   {[
-//                     {
-//                       icon: Code2,
-//                       title: "Collaborative Environment",
-//                       desc: "Work with talented people you'll learn from.",
-//                     },
-//                     {
-//                       icon: Globe,
-//                       title: "Global Opportunities",
-//                       desc: "Grow your career across international markets.",
-//                     },
-//                     { icon: Award, title: "Innovation Culture", desc: "Your ideas are valued and implemented." },
-//                   ].map((item, i) => (
-//                     <motion.div key={i} whileHover={{ x: 8 }} className="flex gap-4">
-//                       <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center flex-shrink-0 glow-blue">
-//                         <item.icon className="text-white" size={24} />
-//                       </div>
-//                       <div>
-//                         <h3 className="font-bold text-slate-900 dark:text-white mb-1">{item.title}</h3>
-//                         <p className="text-slate-600 dark:text-slate-400">{item.desc}</p>
-//                       </div>
-//                     </motion.div>
-//                   ))}
-//                 </div>
-//               </div>
-//             </ScrollReveal>
-
-//             <ScrollReveal>
-//               <div className="grid grid-cols-2 gap-4">
-//                 <motion.div
-//                   whileHover={{ scale: 1.05 }}
-//                   className="glass glass-card p-8 rounded-2xl text-center border-2 border-blue-200/30 dark:border-blue-800/30"
-//                 >
-//                   <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
-//                     100%
-//                   </div>
-//                   <p className="text-slate-600 dark:text-slate-400 font-medium">Remote Flexibility</p>
-//                 </motion.div>
-//                 <motion.div
-//                   whileHover={{ scale: 1.05 }}
-//                   className="glass glass-card p-8 rounded-2xl text-center border-2 border-blue-200/30 dark:border-blue-800/30"
-//                 >
-//                   <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
-//                     30+
-//                   </div>
-//                   <p className="text-slate-600 dark:text-slate-400 font-medium">Countries Served</p>
-//                 </motion.div>
-//                 <motion.div
-//                   whileHover={{ scale: 1.05 }}
-//                   className="glass glass-card p-8 rounded-2xl text-center border-2 border-blue-200/30 dark:border-blue-800/30"
-//                 >
-//                   <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
-//                     24/7
-//                   </div>
-//                   <p className="text-slate-600 dark:text-slate-400 font-medium">Support Available</p>
-//                 </motion.div>
-//                 <motion.div
-//                   whileHover={{ scale: 1.05 }}
-//                   className="glass glass-card p-8 rounded-2xl text-center border-2 border-blue-200/30 dark:border-blue-800/30"
-//                 >
-//                   <div className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
-//                     12+
-//                   </div>
-//                   <p className="text-slate-600 dark:text-slate-400 font-medium">Industry Awards</p>
-//                 </motion.div>
-//               </div>
-//             </ScrollReveal>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* CTA Section */}
-//       <section className="py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 text-white relative overflow-hidden">
-//         <div className="absolute inset-0 opacity-20">
-//           <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl" />
-//         </div>
-
-//         <ParallaxSection className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-//           <h2 className="text-5xl font-bold mb-6">Join Our Growing Team</h2>
-//           <p className="text-xl text-white/90 mb-10">
-//             We&apos;re always looking for talented individuals passionate about innovation and excellence.
-//           </p>
-//           <Link
-//             href="/careers"
-//             className="inline-flex items-center justify-center px-10 py-4 bg-white text-blue-600 rounded-xl font-semibold hover:bg-slate-100 transition-all duration-300 hover:shadow-xl hover:shadow-white/30"
-//           >
-//             View Careers <ArrowRight className="ml-2" size={20} />
-//           </Link>
-//         </ParallaxSection>
-//       </section>
+//     <div className="pt-20 bg-white">
+//       <AboutHero />
+//       <AboutStoryTimeline />
+//       <AboutValuesTeam />
+//       <AboutCultureCTA />
 //     </div>
 //   )
 // }
 
 
 
-import AboutHero from "@/components/about/AboutHero"
-import AboutStoryTimeline from "@/components/about/AboutStoryTimeline"
-import AboutValuesTeam from "@/components/about/AboutValuesTeam"
-import AboutCultureCTA from "@/components/about/AboutCultureCTA"
+
+
+
+"use client"
+
+import { motion } from "framer-motion"
+import Link from "next/link"
+import {
+  Cpu,
+  ShieldCheck,
+  Layers,
+  Coins,
+  Activity,
+  Target,
+  Compass,
+  Zap,
+  ArrowRight,
+} from "lucide-react"
+import { ScrollReveal } from "@/components/scroll-animations"
+
+/* ===================== ANIMATION VARIANTS ===================== */
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12 },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0 },
+}
+
+/* ===================== DATA ===================== */
+
+const founderOSLayers = [
+  {
+    icon: Cpu,
+    title: "Execution Intelligence",
+    desc: "Decision systems, AI playbooks, and repeatable execution frameworks that replace instinct-driven chaos.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Credential & Trust Layer",
+    desc: "Market-recognized certifications and proof systems that convert skills into credibility.",
+  },
+  {
+    icon: Layers,
+    title: "Service Infrastructure",
+    desc: "On-demand legal, compliance, tech, and growth services without retainers or lock-ins.",
+  },
+  {
+    icon: Coins,
+    title: "Tokenized Incentives",
+    desc: "Earn, spend, and exchange value through contributions, learning, and ecosystem participation.",
+  },
+  {
+    icon: Activity,
+    title: "Founder Health Stack",
+    desc: "Performance-first health, nutrition, and endurance systems designed for long-term founders.",
+  },
+]
+
+const systemFailures = [
+  {
+    title: "Unstructured Execution",
+    desc: "Founders rely on intuition instead of systems, leading to inconsistent decisions and slow momentum.",
+  },
+  {
+    title: "No Credibility Signal",
+    desc: "Skills exist, but there is no trusted layer to prove competence to markets or investors.",
+  },
+  {
+    title: "Burnout Before Scale",
+    desc: "Mental, physical, and emotional health collapse long before companies stabilize.",
+  },
+]
+
+/* ===================== PAGE ===================== */
 
 export default function AboutPage() {
   return (
-    <div className="pt-20 bg-white">
-      <AboutHero />
-      <AboutStoryTimeline />
-      <AboutValuesTeam />
-      <AboutCultureCTA />
-    </div>
+    <main className="bg-white overflow-hidden">
+
+      {/* ========================================================= */}
+      {/* HERO */}
+      {/* ========================================================= */}
+     <section className="relative py-24 pt-35 bg-[#0b0f1a] text-white overflow-hidden">
+  {/* BACKGROUND GLOW */}
+  <div className="absolute inset-0 -z-10">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-500/20 rounded-full blur-[140px]" />
+  </div>
+
+  <div className="max-w-7xl mx-auto px-6">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="max-w-4xl mx-auto text-center"
+    >
+      <h1 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+        We’re Building India’s
+        <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+          Founder Operating System
+        </span>
+      </h1>
+
+      <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+        The concept of a <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent text-xl">Founder Operating System</span>  positions COSMINNOX as a fundamental, structured platform designed to manage and optimize the entire entrepreneurial journey in India. It aims to be the core system—like an operating system on a computer—that runs and regulates the founder's life and business execution.
+      </p>
+    </motion.div>
+  </div>
+</section>
+
+
+      {/* ========================================================= */}
+      {/* WHY COSMINNOX EXISTS */}
+      {/* ========================================================= */}
+      <section className="relative py-12 ">
+        <div className="max-w-7xl mx-auto px-6">
+
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center max-w-5xl mx-auto mb-10"
+          >
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+              Why{" "}
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
+                COSMINNOX Exists
+              </span>
+            </h2>
+            <p className="text-lg max-w-5xl text-slate-700">
+              Founders don’t fail because they lack ambition.
+They fail because the ecosystem was never designed for execution, credibility, or endurance.
+
+COSMINNOX exists to fill that gap — by giving founders structured systems, trusted signals, and long-term support to build companies that scale without burning out or breaking down.
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-6"
+          >
+            {systemFailures.map((item, i) => (
+              <motion.div
+                key={i}
+                variants={itemVariants}
+                whileHover={{ y: -10 }}
+                className="
+                  relative group
+                  p-10 rounded-3xl
+                  bg-white/80 backdrop-blur-xl
+                  border border-slate-200
+                  shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)]
+                  transition-all duration-300
+                  hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)]
+                "
+              >
+                <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-cyan-700 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-slate-700 leading-relaxed">
+                  {item.desc}
+                </p>
+
+                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10" />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ========================================================= */}
+      {/* VISION / MISSION / IMPACT */}
+      {/* ========================================================= */}
+      <section className="relative pb-16 pt-12 bg-white overflow-hidden">
+            {/* ===== Soft background glow ===== */}
+            <div className="absolute inset-0 -z-10">
+              <div className="absolute top-1/3 left-1/4 w-[520px] h-[520px] bg-blue-100 rounded-full blur-3xl opacity-50" />
+              <div className="absolute top-1/3 right-1/4 w-[520px] h-[520px] bg-emerald-100 rounded-full blur-3xl opacity-50" />
+            </div>
+      
+            <div className="max-w-7xl mx-auto px-6">
+              {/* ===== Heading ===== */}
+              <ScrollReveal className="text-center mb-10">
+                <h2 className="text-5xl font-bold text-slate-800">
+                  Our{" "}
+                  <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
+                    Vision &amp; Mission
+                  </span>
+                </h2>
+                <p className="mt-3 text-lg text-slate-700 max-w-5xl mx-auto">
+                  Building India’s future in AI, robotics, and deep-tech innovation — not through hype, but through systems, execution, and global-grade standards.
+
+We exist to turn technical talent into scalable companies, ideas into durable infrastructure, and founders into long-term builders capable of competing on a global stage.
+
+Our mission is simple: enable Indian founders to build world-class technology with clarity, credibility, and endurance.
+                </p>
+              </ScrollReveal>
+      
+              {/* ===== Cards ===== */}
+              <div className="grid md:grid-cols-3 gap-6">
+                
+                {/* ===== Vision ===== */}
+                <ScrollReveal>
+                  <div
+                    className="
+                      relative
+                      group
+                      bg-white/80
+                      rounded-3xl
+                      p-10
+                      shadow-xl
+                      border border-slate-100
+                      h-full
+                      transition-all duration-300
+                      hover:-translate-y-2
+                      hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)]
+                      hover:border-blue-200
+                    "
+                  >
+                    <div className="flex items-center gap-4 mb-6">
+                      <div
+                        className="
+                          w-12 h-12 rounded-xl
+                          bg-gradient-to-br from-blue-600 to-cyan-600
+                          flex items-center justify-center
+                          transition-transform duration-300
+                          group-hover:scale-110
+                        "
+                      >
+                        <Target className="text-white" size={22} />
+                      </div>
+                      <h3 className="text-2xl font-bold text-slate-800">
+                        Our Vision
+                      </h3>
+                    </div>
+      
+                    <p className="text-slate-600 text-lg leading-relaxed">
+                      To position India as a leader in AI, robotics, and deep-tech
+                      innovation, enabling startups to build scalable and
+                      transformative technologies.
+                    </p>
+      
+                    {/* Hover glow */}
+                    <div
+                      className="
+                        absolute inset-0
+                        rounded-3xl
+                        opacity-0
+                        group-hover:opacity-100
+                        transition-opacity duration-300
+                        pointer-events-none
+                        bg-gradient-to-br
+                        from-blue-500/10
+                        via-transparent
+                        to-cyan-500/10
+                      "
+                    />
+                  </div>
+                </ScrollReveal>
+      
+                {/* ===== Mission ===== */}
+                <ScrollReveal>
+                  <div
+                    className="
+                      relative
+                      group
+                      bg-white
+                      rounded-3xl
+                      p-10
+                      shadow-xl
+                      border border-slate-100
+                      h-full
+                      transition-all duration-300
+                      hover:-translate-y-2
+                      hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)]
+                      hover:border-emerald-200
+                    "
+                  >
+                    <div className="flex items-center gap-4 mb-6">
+                      <div
+                        className="
+                          w-12 h-12 rounded-xl
+                          bg-gradient-to-br from-emerald-600 to-green-600
+                          flex items-center justify-center
+                          transition-transform duration-300
+                          group-hover:scale-110
+                        "
+                      >
+                        <Compass className="text-white" size={22} />
+                      </div>
+                      <h3 className="text-2xl font-bold text-slate-800">
+                        Our Mission
+                      </h3>
+                    </div>
+      
+                    <p className="text-slate-600 text-lg leading-relaxed">
+                      To build a globally competitive deep-tech startup ecosystem by
+                      providing cutting-edge infrastructure, expert mentorship, and
+                      access to funding opportunities.
+                    </p>
+      
+                    {/* Hover glow */}
+                    <div
+                      className="
+                        absolute inset-0
+                        rounded-3xl
+                        opacity-0
+                        group-hover:opacity-100
+                        transition-opacity duration-300
+                        pointer-events-none
+                        bg-gradient-to-br
+                        from-emerald-500/10
+                        via-transparent
+                        to-green-500/10
+                      "
+                    />
+                  </div>
+                </ScrollReveal>
+      
+                {/* ===== Impact ===== */}
+                <ScrollReveal>
+                  <div
+                    className="
+                      relative
+                      group
+                      bg-white
+                      rounded-3xl
+                      p-4
+                      shadow-xl
+                      border border-slate-100
+                      h-full
+                      transition-all duration-300
+                      hover:-translate-y-2
+                      hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)]
+                      hover:border-purple-200
+                    "
+                  >
+                    <div className="flex items-center gap-4 mb-2">
+                      <div
+                        className="
+                          w-12 h-12 rounded-xl
+                          bg-gradient-to-br from-purple-600 to-pink-600
+                          flex items-center justify-center
+                          transition-transform duration-300
+                          group-hover:scale-110
+                        "
+                      >
+                        <Zap className="text-white" size={22} />
+                      </div>
+                      <h3 className="text-2xl font-bold text-slate-800">
+                        Our Impact
+                      </h3>
+                    </div>
+      
+                    <p className="text-slate-600 text-lg leading-relaxed">
+                      We aim to incubate India’s next wave of deep-tech unicorns,
+                      creating AI-driven solutions that power industries, transform
+                      economies, and position India as a leader in global innovation.
+                    </p>
+      
+                    <p className="mt-3 font-semibold text-teal-600">
+                      Join us in shaping the future of AI and deep-tech entrepreneurship.
+                    </p>
+      
+                    {/* Hover glow */}
+                    <div
+                      className="
+                        absolute inset-0
+                        rounded-3xl
+                        opacity-0
+                        group-hover:opacity-100
+                        transition-opacity duration-300
+                        pointer-events-none
+                        bg-gradient-to-br
+                        from-purple-500/10
+                        via-transparent
+                        to-pink-500/10
+                      "
+                    />
+                  </div>
+                </ScrollReveal>
+              </div>
+            </div>
+          </section>
+
+      {/* ========================================================= */}
+      {/* FOUNDER OS LAYERS */}
+      {/* ========================================================= */}
+      <section className="relative pb-20 pt-8 bg-gradient-to-b from-white to-slate-100">
+        <div className="max-w-7xl mx-auto px-6">
+
+          <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-10">
+            The COSMINNOX{" "}
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
+               Operating Layers
+            </span>
+          </h2>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {founderOSLayers.map((layer, i) => {
+              const Icon = layer.icon
+              return (
+                <motion.div
+                  key={i}
+                  variants={itemVariants}
+                  whileHover={{ y: -10 }}
+                  className="
+                    relative group
+                    p-10 rounded-3xl
+                    bg-white/80 backdrop-blur-xl
+                    border border-slate-200
+                    shadow-[0_10px_30px_-10px_rgba(0,0,0,0.15)]
+                    transition-all duration-300
+                  "
+                >
+                  <div className="w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-500 flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
+                    <Icon size={30} />
+                  </div>
+
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                    {layer.title}
+                  </h3>
+                  <p className="text-slate-700 leading-relaxed">
+                    {layer.desc}
+                  </p>
+
+                  <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10" />
+                </motion.div>
+              )
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ========================================================= */}
+      {/* CTA */}
+      {/* ========================================================= */}
+      <section className="relative py-24 bg-[#0b0f1a] text-white overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-500/20 rounded-full blur-[140px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 ">
+            Ready to Build with Systems?
+          </h2>
+
+          <p className="text-lg text-slate-300 max-w-3xl mx-auto mb-10">
+            COSMINNOX is not another accelerator. It’s the infrastructure founders were always missing. We replace chaos with clarity, intuition with execution frameworks, and burnout with sustainable momentum — giving founders the systems needed to scale confidently and endure long-term. Build once. Execute repeatedly. Scale without breaking.
+          </p>
+
+          <Link
+            href="/contact"
+            className="inline-flex items-center px-8 py-4 rounded-xl bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 text-white font-semibold shadow-lg hover:scale-105 transition"
+          >
+            Join COSMINNOX
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Link>
+        </div>
+      </section>
+
+    </main>
   )
 }

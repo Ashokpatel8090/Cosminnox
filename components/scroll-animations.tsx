@@ -30,8 +30,8 @@ export function ScrollReveal({ children, className = "", delay = 0 }: ScrollAnim
       delay,
       scrollTrigger: {
         trigger: element,
-        start: "top 80%",
-        end: "top 50%",
+        start: "top 98%",
+        // end: "top 50%",
         scrub: false,
         markers: false,
       },

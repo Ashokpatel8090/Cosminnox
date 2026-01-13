@@ -147,12 +147,12 @@ export default function CloudSolutionsPage() {
           </h1>
 
           {/* Description */}
-          <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-3xl mx-auto mb-6">
+          <p className="text-lg md:text-xl text-slate-700 leading-relaxed max-w-3xl mx-auto mb-6">
             We design, build, and manage cloud infrastructure on AWS, Azure, and GCP
             that scales effortlessly while remaining secure, resilient, and cost-efficient.
           </p>
 
-          <p className="text-base md:text-lg text-slate-500 max-w-2xl mx-auto mb-10">
+          <p className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto mb-10">
             From DevOps automation and infrastructure as code to monitoring and
             security-first architectures — we help you move faster with confidence.
           </p>
@@ -178,7 +178,7 @@ export default function CloudSolutionsPage() {
 
 
       {/* ================= PLATFORMS ================= */}
-      <div className="px-6 py-8 relative z-10 bg-gray-100">
+      <div className="px-6 py-8 relative z-10 ">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -196,45 +196,112 @@ export default function CloudSolutionsPage() {
             </span>
           </motion.h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {platforms.map((p, i) => {
-              const Icon = p.icon
-              return (
-                <motion.div
-                  key={i}
-                  variants={fadeUp}
-                  whileHover={{
-                    y: -8,
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="group p-8 rounded-3xl bg-white border border-slate-200 shadow-xl flex flex-col hover:bg-cyan-50 transition-all duration-300 cursor-pointer"
-                >
-                  {/* Icon with Brand Gradient Background */}
-                  <div
-                    className={`w-14 h-14 mb-6 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 flex items-center justify-center text-white shadow-xl transition-transform duration-300 group-hover:scale-105`}
-                  >
-                    <Icon size={28} />
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 text-slate-900 transition-colors duration-300 group-hover:text-cyan-700">
-                    {p.title}
-                  </h3>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+  {platforms.map((p, i) => {
+    const Icon = p.icon
 
-                  <p className="text-slate-600 mb-4 flex-grow">{p.desc}</p>
-                  <ul className="text-sm font-medium text-slate-500 list-disc list-inside space-y-1">
-                    {p.services.map((s, idx) => (
-                      <li key={idx}>{s}</li>
-                    ))}
-                  </ul>
-                </motion.div>
-              )
-            })}
-          </div>
+    return (
+      <motion.div
+        key={i}
+        variants={fadeUp}
+        whileHover={{ y: -8 }}
+        transition={{ duration: 0.3 }}
+        className="
+          relative
+          group
+          p-8
+          rounded-xl
+          bg-white/80
+          backdrop-blur-xl
+          border border-slate-200
+          shadow-sm
+          flex flex-col
+          transition-all duration-300
+          cursor-pointer
+          hover:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)]
+          hover:border-cyan-300
+        "
+      >
+        {/* ===== ICON ===== */}
+        <div
+          className="
+            w-14 h-14 mb-4
+            rounded-xl
+            bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500
+            flex items-center justify-center
+            text-white
+            shadow-lg
+            transition-transform duration-300
+            group-hover:scale-110
+          "
+        >
+          <Icon size={28} />
+        </div>
+
+        {/* ===== TITLE ===== */}
+        <h3
+          className="
+            text-xl font-bold mb-2 text-slate-900
+            transition-colors duration-300
+            group-hover:text-cyan-700
+          "
+        >
+          {p.title}
+        </h3>
+
+        {/* ===== DESCRIPTION ===== */}
+        <p className="text-slate-600 mb-2 flex-grow">
+          {p.desc}
+        </p>
+
+        {/* ===== SERVICES LIST ===== */}
+        <ul
+          className="
+            grid grid-cols-2 gap-x-4 gap-y-2
+            text-sm font-medium text-slate-600
+          "
+        >
+          {p.services.map((s, idx) => (
+            <li key={idx} className="flex items-center gap-2">
+              <span
+                className="
+                  w-2 h-2
+                  rounded-full
+                  bg-gradient-to-r from-blue-600 to-purple-600
+                  shrink-0
+                "
+              />
+              <span>{s}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* ===== HOVER GLOW ===== */}
+        <div
+          className="
+            absolute inset-0
+            rounded-3xl
+            opacity-0
+            group-hover:opacity-100
+            transition-opacity duration-300
+            pointer-events-none
+            bg-gradient-to-br
+            from-cyan-500/10
+            via-transparent
+            to-purple-500/10
+          "
+        />
+      </motion.div>
+    )
+  })}
+</div>
+
+
         </motion.div>
       </div>
 
       {/* ================= SERVICES ================= */}
-      <div className="px-6 py-8 bg-gray-100 relative">
+      <div className="px-6 py-8  relative">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -253,39 +320,88 @@ export default function CloudSolutionsPage() {
           </motion.h2>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {cloudServices.map((s, i) => {
-              const Icon = s.icon
-              return (
-                <motion.div
-                  key={i}
-                  variants={fadeUp}
-                  whileHover={{
-                    y: -8,
-                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="group p-8 rounded-3xl bg-white border border-slate-200 shadow-xl flex flex-col hover:bg-blue-50 transition-all duration-300 cursor-pointer"
-                >
-                  {/* Icon with Brand Gradient Background */}
-                  <div
-                    className={`w-14 h-14 mb-6 rounded-xl bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 flex items-center justify-center text-white shadow-xl transition-transform duration-300 group-hover:scale-105`}
-                  >
-                    <Icon size={28} />
-                  </div>
+  {cloudServices.map((s, i) => {
+    const Icon = s.icon
 
-                  <h3 className="text-xl font-bold mb-3 text-slate-900 transition-colors duration-300 group-hover:text-blue-700">
-                    {s.title}
-                  </h3>
-                  <p className="text-slate-600 flex-grow">{s.desc}</p>
-                </motion.div>
-              )
-            })}
-          </div>
+    return (
+      <motion.div
+        key={i}
+        variants={fadeUp}
+        whileHover={{ y: -8 }}
+        transition={{ duration: 0.3 }}
+        className="
+          relative
+          group
+          p-8
+          rounded-3xl
+          bg-white/80
+          backdrop-blur-xl
+          border border-slate-200
+          shadow-sm
+          flex flex-col
+          transition-all duration-300
+          cursor-pointer
+          hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.18)]
+        hover:border-cyan-300
+        "
+      >
+        {/* ===== ICON ===== */}
+        <div
+          className="
+            w-14 h-14 mb-6
+            rounded-xl
+            bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500
+            flex items-center justify-center
+            text-white
+            shadow-lg
+            transition-transform duration-300
+            group-hover:scale-110
+          "
+        >
+          <Icon size={28} />
+        </div>
+
+        {/* ===== TITLE ===== */}
+        <h3
+          className="
+            text-xl font-bold mb-3 text-slate-900
+            transition-colors duration-300
+            group-hover:text-blue-700
+          "
+        >
+          {s.title}
+        </h3>
+
+        {/* ===== DESCRIPTION ===== */}
+        <p className="text-slate-600 flex-grow">
+          {s.desc}
+        </p>
+
+        {/* ===== HOVER GLOW ===== */}
+        <div
+          className="
+            absolute inset-0
+            rounded-3xl
+            opacity-0
+            group-hover:opacity-100
+            transition-opacity duration-300
+            pointer-events-none
+            bg-gradient-to-br
+            from-blue-500/10
+            via-transparent
+            to-purple-500/10
+          "
+        />
+      </motion.div>
+    )
+  })}
+</div>
+
         </motion.div>
       </div>
 
       {/* ================= DEVOPS PIPELINE ================= */}
-      <div className="px-6 py-12 bg-gray-100">
+      <div className="px-6 py-12 ">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -307,19 +423,71 @@ export default function CloudSolutionsPage() {
 
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {devopsSteps.map((step, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp}
-                whileHover={{ scale: 1.05, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
-                transition={{ duration: 0.2 }}
-                className="p-6 rounded-xl text-center font-medium bg-white border border-slate-200 shadow-md flex items-center justify-center h-full transition-all duration-300"
-              >
-                <span className="text-lg font-bold text-slate-900">{i + 1}.</span>
-                <span className="ml-2 text-slate-700">{step}</span>
-              </motion.div>
-            ))}
-          </div>
+  {devopsSteps.map((step, i) => (
+    <motion.div
+      key={i}
+      variants={fadeUp}
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.3 }}
+      className="
+        relative
+        group
+        p-6
+        rounded-xl
+        text-center
+        font-medium
+        bg-white/80
+        backdrop-blur-xl
+        border border-slate-200
+        shadow-sm
+        flex items-center justify-center
+        h-full
+        transition-all duration-300
+        hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.18)]
+        hover:border-cyan-300
+      "
+    >
+      {/* ===== CONTENT ===== */}
+      <div className="relative z-6 flex items-center">
+        <span
+          className="
+            text-lg font-bold
+            text-white
+            w-8 h-8
+            rounded-full
+            bg-gradient-to-r from-blue-600 to-purple-600
+            flex items-center justify-center
+            transition-transform duration-300
+            group-hover:scale-110
+          "
+        >
+          {i + 1}
+        </span>
+
+        <span className="ml-1 text-slate-700 group-hover:text-slate-900 transition-colors">
+          {step}
+        </span>
+      </div>
+
+      {/* ===== HOVER GLOW ===== */}
+      <div
+        className="
+          absolute inset-0
+          rounded-xl
+          opacity-0
+          group-hover:opacity-100
+          transition-opacity duration-300
+          pointer-events-none
+          bg-gradient-to-br
+          from-cyan-500/10
+          via-transparent
+          to-purple-500/10
+        "
+      />
+    </motion.div>
+  ))}
+</div>
+
         </motion.div>
       </div>
 
@@ -371,8 +539,8 @@ export default function CloudSolutionsPage() {
   >
     {/* Header */}
     <motion.div variants={fadeUp} className="text-center mb-10">
-      <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-        Frequently Asked Questions
+      <h2 className="text-4xl font-bold bg-slate-800 bg-clip-text text-transparent mb-4">
+        Frequently <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">Asked Questions</span> 
       </h2>
       <p className="text-xl text-slate-600 dark:text-slate-400">
         Find answers to common questions about our services and processes.
