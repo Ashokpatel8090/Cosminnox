@@ -184,7 +184,7 @@ export default function Testimonials() {
       </section>
 
       {/* Testimonials Section - Advanced Cards */}
-      <section className="py-24 bg-white dark:bg-slate-950">
+      <section className="py-10 bg-white dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="text-center mb-20">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
@@ -244,7 +244,7 @@ export default function Testimonials() {
       </section>
 
       {/* Case Studies Section - Enhanced */}
-      <section className="py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
+      <section className="py-8 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="text-center mb-20">
             <h2 className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-6">
@@ -316,60 +316,59 @@ export default function Testimonials() {
 
                     {/* Metrics Side */}
                     <div
-  className={`relative p-12 overflow-hidden flex flex-col justify-center ${
-    index % 2 === 1 ? "lg:order-1" : ""
-  }`}
->
-  {/* ===== Background Layer ===== */}
-  <div
-    className={`absolute inset-0 bg-gradient-to-br ${caseStudy.color} opacity-5 dark:opacity-10`}
-  />
+                    className={`relative p-12 overflow-hidden flex flex-col justify-center ${
+                      index % 2 === 1 ? "lg:order-1" : ""
+                    }`}>
+                      {/* ===== Background Layer ===== */}
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${caseStudy.color} opacity-5 dark:opacity-10`}
+                      />
 
-  {/* ===== Content Layer ===== */}
-  <div className="relative z-10">
-    <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
-      Results Achieved
-    </h4>
+                      {/* ===== Content Layer ===== */}
+                      <div className="relative z-10">
+                        <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+                          Results Achieved
+                        </h4>
 
-    <div className="space-y-6">
-      {caseStudy.metrics.map((metric, i) => (
-        <div key={i} className="group">
-          
-          {/* Metric Header */}
-          <div className="flex items-baseline justify-between mb-2">
-            <span className="text-slate-700 dark:text-slate-300 font-medium">
-              {metric.label}
-            </span>
+                        <div className="space-y-6">
+                          {caseStudy.metrics.map((metric, i) => (
+                            <div key={i} className="group">
+                              
+                              {/* Metric Header */}
+                              <div className="flex items-baseline justify-between mb-2">
+                                <span className="text-slate-700 dark:text-slate-300 font-medium">
+                                  {metric.label}
+                                </span>
 
-            <div className="flex items-center gap-2">
-              <span
-                className={`text-3xl font-bold bg-gradient-to-r ${caseStudy.color} bg-clip-text text-transparent`}
-              >
-                {metric.value}
-              </span>
+                                <div className="flex items-center gap-2">
+                                  <span
+                                    className={`text-3xl font-bold bg-gradient-to-r ${caseStudy.color} bg-clip-text text-transparent`}
+                                  >
+                                    {metric.value}
+                                  </span>
 
-              {metric.trend === "up" && (
-                <TrendingUp className="text-green-500" size={22} />
-              )}
-            </div>
-          </div>
+                                  {metric.trend === "up" && (
+                                    <TrendingUp className="text-green-500" size={22} />
+                                  )}
+                                </div>
+                              </div>
 
-          {/* Progress Bar */}
-          <div className="h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: "100%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: i * 0.2 }}
-              className={`h-full bg-gradient-to-r ${caseStudy.color}`}
-            />
-          </div>
+                              {/* Progress Bar */}
+                              <div className="h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                                <motion.div
+                                  initial={{ width: 0 }}
+                                  whileInView={{ width: "100%" }}
+                                  viewport={{ once: true }}
+                                  transition={{ duration: 0.8, delay: i * 0.2 }}
+                                  className={`h-full bg-gradient-to-r ${caseStudy.color}`}
+                                />
+                              </div>
 
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
 
                   </div>
                 </motion.div>

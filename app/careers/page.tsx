@@ -74,7 +74,9 @@ export default function Careers() {
     {
       icon: Award,
       title: "Compensation",
-      items: ["Competitive salary", "Annual bonuses", "Stock options available"],
+      items: ["Competitive salary", "Annual bonuses",
+        //  "Stock options available"
+        ],
       color: "from-purple-500 to-pink-500",
     },
   ]
@@ -86,7 +88,7 @@ export default function Careers() {
   ]
 
   return (
-    <div className="pt-20 overflow-hidden bg-white dark:bg-slate-950">
+    <div className=" overflow-hidden bg-white dark:bg-slate-950">
       {/* Hero Section */}
       <section className="min-h-[70vh] flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0">
@@ -104,9 +106,14 @@ export default function Careers() {
           <motion.div className="mb-6 inline-block">
           </motion.div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent mb-6 leading-tight">
-            Build Your Career at COSMINNOX
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-snug">
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
+             Build Your Career 
+            </span>
+            <br className="hidden sm:block" />
+            at COSMINNOX
           </h1>
+
           <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
             Join our diverse team of innovators and help us shape the future of digital technology. We offer competitive
             compensation, growth opportunities, and a collaborative culture.
@@ -115,14 +122,23 @@ export default function Careers() {
       </section>
 
       {/* Why Join Section */}
-      <section className="py-24 bg-white dark:bg-slate-950">
+      <section className="py-12 bg-white dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="text-center mb-20">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+            {/* <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
               Why Join Our Team
-            </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            </h2> */}
+
+            <h2 className="text-5xl font-bold text-slate-800">
+            Why{" "}
+            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
+              Join Our Team
+            </span>
+          </h2>
+
+            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-4xl mx-auto mt-4">
               We offer more than just a job—we offer a career where you can make a real impact and grow with us.
+You’ll work on meaningful problems, take real ownership, and see your contributions translate into real-world outcomes.
             </p>
           </ScrollReveal>
 
@@ -131,7 +147,7 @@ export default function Careers() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
           >
             {benefits.map((benefit, index) => {
               const Icon = benefit.icon
@@ -139,12 +155,12 @@ export default function Careers() {
                 <motion.div key={index} variants={cardVariants}>
                   <div className="glass glass-card p-8 rounded-2xl h-full border-2 border-blue-200/30 dark:border-blue-800/30 hover:shadow-2xl transition-all group">
                     <div
-                      className={`w-16 h-16 rounded-xl bg-gradient-to-br ${benefit.color} flex items-center justify-center mb-6 glow-blue group-hover:scale-110 transition-transform`}
+                      className={`w-16 h-16 rounded-xl bg-gradient-to-br ${benefit.color} flex items-center justify-center mb-3 glow-blue group-hover:scale-110 transition-transform`}
                     >
                       <Icon className="text-white" size={32} />
                     </div>
                     <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{benefit.title}</h3>
-                    <ul className="space-y-3">
+                    <ul className="space-y-1">
                       {benefit.items.map((item, itemIndex) => (
                         <li key={itemIndex} className="text-slate-600 dark:text-slate-400 flex items-start">
                           <span className="mr-3 text-blue-600 dark:text-blue-400 font-bold">•</span>
@@ -159,21 +175,93 @@ export default function Careers() {
           </motion.div>
 
           {/* Quick Perks */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {perks.map((perk, idx) => {
-              const Icon = perk.icon
-              return (
-                <ScrollReveal key={idx} delay={idx * 0.1}>
-                  <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3 p-4">
-                    <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-950 flex items-center justify-center">
-                      <Icon className="text-blue-600 dark:text-blue-400" size={24} />
-                    </div>
-                    <span className="font-semibold text-slate-900 dark:text-white">{perk.label}</span>
-                  </motion.div>
-                </ScrollReveal>
-              )
-            })}
+          <div
+  className="
+    grid
+    grid-cols-1
+    sm:grid-cols-2
+    md:grid-cols-3
+    gap-6
+  "
+>
+  {perks.map((perk, idx) => {
+    const Icon = perk.icon
+
+    return (
+      <ScrollReveal key={idx} delay={idx * 0.1}>
+        <motion.div
+          whileHover={{ y: -6 }}
+          transition={{ duration: 0.3 }}
+          className="
+            relative
+            group
+            flex
+            items-center
+            gap-4
+            p-5
+            rounded-2xl
+            bg-white/80
+            backdrop-blur-xl
+            border border-slate-200
+            shadow-sm
+            cursor-pointer
+            transition-all duration-300
+            hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.18)]
+            hover:border-blue-300
+            text-center
+           
+          "
+        >
+          {/* ===== ICON ===== */}
+          <div
+            className="
+              w-12 h-12
+              rounded-xl
+              bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-500
+              flex items-center justify-center
+              text-white
+              shadow-md
+              transition-transform duration-300
+              group-hover:scale-110
+            "
+          >
+            <Icon size={22} />
           </div>
+
+          {/* ===== LABEL ===== */}
+          <span
+            className="
+              font-semibold
+              text-slate-900
+              text-base
+              group-hover:text-blue-700
+              transition-colors
+            "
+          >
+            {perk.label}
+          </span>
+
+          {/* ===== HOVER GLOW ===== */}
+          <div
+            className="
+              absolute inset-0
+              rounded-2xl
+              opacity-0
+              group-hover:opacity-100
+              transition-opacity duration-300
+              pointer-events-none
+              bg-gradient-to-br
+              from-blue-500/10
+              via-transparent
+              to-purple-500/10
+            "
+          />
+        </motion.div>
+      </ScrollReveal>
+    )
+  })}
+</div>
+
         </div>
       </section>
 
@@ -184,8 +272,9 @@ export default function Careers() {
             <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
               Open Positions
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              We&apos;re hiring talented individuals across engineering, design, and infrastructure teams.
+            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-4xl mx-auto">
+              We’re looking for builders, thinkers, and problem-solvers who thrive in fast-moving environments.
+If you care about ownership, learning, and real-world impact, you’ll feel at home here.
             </p>
           </ScrollReveal>
 
@@ -205,10 +294,10 @@ export default function Careers() {
                           <Briefcase className="text-white" size={24} />
                         </div>
                         <div>
-                          <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-slate-800 dark:group-hover:text-blue-400 transition-colors">
                             {job.title}
                           </h3>
-                          <p className="text-blue-600 dark:text-blue-400 font-semibold">{job.department}</p>
+                          <p className="text-slate-700 dark:text-slate-900 font-semibold">{job.department}</p>
                         </div>
                       </div>
 
@@ -221,10 +310,10 @@ export default function Careers() {
                           <Award size={18} className="text-blue-600 dark:text-blue-400" />
                           {job.experience}
                         </div>
-                        <span className="px-3 py-1 bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 rounded-full text-xs font-bold">
+                        <span className="px-3 py-1 bg-blue-50 text-slate-800 dark:text-slate-600 rounded-full text-xs font-bold">
                           {job.type}
                         </span>
-                        <span className="px-3 py-1 bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 rounded-full text-xs font-bold">
+                        <span className="px-3 py-1 bg-blue-50 text-slate-800 dark:text-slate-600 rounded-full text-xs font-bold">
                           {job.salary}
                         </span>
                       </div>
