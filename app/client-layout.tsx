@@ -4,6 +4,8 @@ import type React from "react"
 import { useEffect } from "react"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import HelpWidget from "@/components/HelpWidget"
+import ScrollToTop from "@/components/ScrollToTop"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 
@@ -40,6 +42,8 @@ export default function ClientLayout({
       <Header />
       <main className="min-h-screen">{children}</main>
       <Footer />
+      <ScrollToTop />
+      <HelpWidget />
       <Analytics />
       <SpeedInsights />
     </>
