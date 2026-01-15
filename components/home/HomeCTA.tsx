@@ -273,7 +273,7 @@ const itemVariants = {
 // ================= COMPONENT =================
 export default function HomeCTA() {
   return (
-    <section className="py-14 bg-gray-100">
+    <section className="py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* ================= PARTNERS ================= */}
@@ -285,12 +285,21 @@ export default function HomeCTA() {
             viewport={{ once: true }}
             className="text-center mb-10"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">
+            {/* <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900">
               Mentors who have partnered with us
+            </h2> */}
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900">
+              Mentors who have{" "}
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
+                partnered with us
+              </span>
             </h2>
-            <p className="mt-2 text-base sm:text-lg text-slate-600">
-              Trusted by leading government and industry bodies
-            </p>
+              <p className="mt-2 text-base sm:text-lg text-slate-600">
+                Our mentors bring decades of experience across government, industry, and emerging technologies, guiding founders with real-world insights.
+  Their involvement ensures strategic depth, execution discipline, and long-term vision for every startup we support
+              </p>
+            </div>
           </motion.div>
 
           {/* ===== RESPONSIVE GRID (EXACT REQUIREMENT) ===== */}
@@ -345,7 +354,7 @@ export default function HomeCTA() {
           </motion.div>
         </div>
 
-        <hr className="border-t border-slate-300 my-20" />
+        {/* <hr className="border-t border-slate-300 my-20" /> */}
 
         {/* ================= TESTIMONIALS ================= */}
         <motion.div

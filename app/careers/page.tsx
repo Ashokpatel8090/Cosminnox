@@ -136,8 +136,9 @@ export default function Careers() {
             </span>
           </h2>
 
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mt-4">
+            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-4xl mx-auto mt-4">
               We offer more than just a job—we offer a career where you can make a real impact and grow with us.
+You’ll work on meaningful problems, take real ownership, and see your contributions translate into real-world outcomes.
             </p>
           </ScrollReveal>
 
@@ -271,8 +272,9 @@ export default function Careers() {
             <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
               Open Positions
             </h2>
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              We&apos;re hiring talented individuals across engineering, design, and infrastructure teams.
+            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-4xl mx-auto">
+              We’re looking for builders, thinkers, and problem-solvers who thrive in fast-moving environments.
+If you care about ownership, learning, and real-world impact, you’ll feel at home here.
             </p>
           </ScrollReveal>
 
@@ -292,10 +294,10 @@ export default function Careers() {
                           <Briefcase className="text-white" size={24} />
                         </div>
                         <div>
-                          <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-slate-800 dark:group-hover:text-blue-400 transition-colors">
                             {job.title}
                           </h3>
-                          <p className="text-blue-600 dark:text-blue-400 font-semibold">{job.department}</p>
+                          <p className="text-slate-700 dark:text-slate-900 font-semibold">{job.department}</p>
                         </div>
                       </div>
 
@@ -308,10 +310,10 @@ export default function Careers() {
                           <Award size={18} className="text-blue-600 dark:text-blue-400" />
                           {job.experience}
                         </div>
-                        <span className="px-3 py-1 bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 rounded-full text-xs font-bold">
+                        <span className="px-3 py-1 bg-blue-50 text-slate-800 dark:text-slate-600 rounded-full text-xs font-bold">
                           {job.type}
                         </span>
-                        <span className="px-3 py-1 bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 rounded-full text-xs font-bold">
+                        <span className="px-3 py-1 bg-blue-50 text-slate-800 dark:text-slate-600 rounded-full text-xs font-bold">
                           {job.salary}
                         </span>
                       </div>

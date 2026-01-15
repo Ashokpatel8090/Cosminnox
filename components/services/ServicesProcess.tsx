@@ -52,7 +52,7 @@ export default function ServicesProcess() {
           viewport={{ once: true, amount: 0.5 }}
           className="text-center max-w-4xl mx-auto mb-10"
         >
-          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-snug">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-2 leading-snug">
             Global{" "}
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
               Mentorship & Networking
@@ -67,7 +67,7 @@ export default function ServicesProcess() {
         </motion.div>
 
         {/* ===================== PROGRAM CARDS ===================== */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {programs.map((item, i) => {
             const Icon = item.icon
 

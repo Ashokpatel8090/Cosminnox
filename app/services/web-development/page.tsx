@@ -1,7 +1,10 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useState } from "react"
+// import { motion } from "framer-motion"
+// import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect } from "react"
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -19,15 +22,62 @@ const fadeUp = {
 export default function WebDevelopmentPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
+  const heroImages = [
+  "/bg/hero1.png",
+  "/bg/hero2.png",
+  "/bg/hero3.png",
+  "/bg/hero4.png",
+  "/bg/hero5.png",
+]
+
+const [currentBg, setCurrentBg] = useState(0)
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentBg((prev) => (prev + 1) % heroImages.length)
+  }, 7000) // change every 4s
+
+  return () => clearInterval(interval)
+}, [])
+
+
+
+
   return (
-    <section className="min-h-screen bg-slate-50 text-slate-900">
+    <section className="min-h-screen  text-slate-900 mt-16">
       {/* ================= HERO ================= */}
        <section className="min-h-[80vh] flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0">
+        {/* <div className="absolute inset-0">
           <div className="absolute top-20 right-20 w-96 h-96 bg-blue-400/20 rounded-full blur-3xl" />
           <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-400/20 rounded-full blur-3xl" />
           <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-cyan-400/15 rounded-full blur-3xl" />
-        </div>
+        </div> */}
+
+        {/* ================= HERO BACKGROUND SLIDER ================= */}
+{/* ================= HERO BACKGROUND SLIDER (RIGHT ➜ LEFT) ================= */}
+<div className="absolute inset-0 overflow-hidden">
+  <AnimatePresence initial={false}>
+    <motion.div
+      key={currentBg}
+      className="absolute inset-0 bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${heroImages[currentBg]})`,
+      }}
+      initial={{ x: "100%", opacity: 1 }}
+      animate={{ x: "0%" }}
+      exit={{ x: "-100%" }}
+      transition={{
+        duration: 1.2,
+        ease: "easeInOut",
+      }}
+    />
+  </AnimatePresence>
+
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-black/40" />
+</div>
+
+
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -35,37 +85,22 @@ export default function WebDevelopmentPage() {
           transition={{ duration: 0.8 }}
           className="relative z-10 max-w-6xl mx-auto px-6 text-center"
         >
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent py-6 mt-12 leading-tight">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent py-6  leading-tight">
   Web Development
 </h1>
 
-<p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-6">
+{/* <p className="text-xl text-slate-100 dark:text-slate-300 max-w-3xl mx-auto mb-6">
   We build fast, scalable, and secure web applications using modern
   frameworks like Next.js, React, and cloud-native architectures.
-</p>
+</p> */}
 
-<p className="text-lg text-slate-500 dark:text-slate-400 max-w-4xl mx-auto mb-10 leading-relaxed">
+<p className="text-lg text-slate-100 dark:text-slate-400 max-w-4xl mx-auto mb-10 leading-relaxed">
   From high-performance marketing websites to complex enterprise platforms,
   COSMINNOX helps businesses transform ideas into reliable, user-centric
   digital products. Our focus on performance, security, and scalability
   ensures your application is ready to grow with your business.
 </p>
 
-{/* Feature highlights */}
-{/* <div className="flex flex-wrap justify-center gap-6 mb-12 text-sm font-medium text-slate-600 dark:text-slate-400">
-  <span className="px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400">
-    ⚡ High Performance
-  </span>
-  <span className="px-4 py-2 rounded-full bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-400">
-    🔒 Secure by Design
-  </span>
-  <span className="px-4 py-2 rounded-full bg-cyan-50 dark:bg-cyan-950 text-cyan-600 dark:text-cyan-400">
-    📈 Scalable Architecture
-  </span>
-  <span className="px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800">
-    🌍 SEO & Cloud Ready
-  </span>
-</div> */}
 
 {/* CTA buttons */}
 <div className="flex flex-wrap justify-center gap-4">
@@ -73,7 +108,7 @@ export default function WebDevelopmentPage() {
     Get Started
   </button>
 
-  <button className="px-8 py-4 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+  <button className="px-8 py-4 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-100 dark:text-slate-300 font-semibold hover:shadow-xl hover:shadow-blue-100/40 dark:hover:bg-slate-800 transition">
     View Our Work
   </button>
 </div>

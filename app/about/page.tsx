@@ -105,13 +105,31 @@ export default function AboutPage() {
       {/* ========================================================= */}
       {/* HERO */}
       {/* ========================================================= */}
-     <section className="relative py-24 pt-35 bg-[#0b0f1a] text-white overflow-hidden">
-  {/* BACKGROUND GLOW */}
-  <div className="absolute inset-0 -z-10">
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-500/20 rounded-full blur-[140px]" />
+     <section className="relative py-24 pt-35 min-h-[80vh] flex items-center overflow-hidden mt-16">
+  {/* BACKGROUND LAYER */}
+  
+  <div className="absolute inset-0 z-0">
+    {/* The Image */}
+    <img 
+      src="/about/about.png" 
+      alt="Founder Operating System Background" 
+      className="w-full h-full object-cover object-center"
+      onError={(e) => {
+        // Fallback in case image path is wrong
+        e.currentTarget.src = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop";
+      }}
+    />
+    
+    {/* Dark Gradient Overlay - Critical for text readability */}
+    <div className="absolute inset-0 bg-slate-950/50 backdrop-blur-[2px]" />
+    
+    {/* Ambient Glows */}
+    <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/20 rounded-full blur-[120px]" />
+    <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px]" />
   </div>
 
-  <div className="max-w-7xl mx-auto px-6">
+  {/* CONTENT LAYER */}
+  <div className="max-w-7xl mx-auto px-6 relative z-10 text-white">
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
@@ -125,8 +143,8 @@ export default function AboutPage() {
         </span>
       </h1>
 
-      <p className="text-lg text-slate-300 max-w-3xl mx-auto">
-        The concept of a <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent text-xl">Founder Operating System</span>  positions COSMINNOX as a fundamental, structured platform designed to manage and optimize the entire entrepreneurial journey in India. It aims to be the core system—like an operating system on a computer—that runs and regulates the founder's life and business execution.
+      <p className="text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
+        The concept of a <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent text-xl font-bold">Founder Operating System</span> positions COSMINNOX as a fundamental, structured platform designed to manage and optimize the entire entrepreneurial journey in India.
       </p>
     </motion.div>
   </div>
