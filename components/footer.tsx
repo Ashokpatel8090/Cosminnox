@@ -134,13 +134,20 @@ export default function Footer() {
 
             {/* Legal */}
             <div className="flex gap-6 text-slate-500 text-sm">
-              <Link href="#" className="hover:text-blue-400 transition-colors">
-                Privacy
-              </Link>
-              <Link href="#" className="hover:text-blue-400 transition-colors">
-                Terms
-              </Link>
-            </div>
+  <Link
+    href="/privacy"
+    className="hover:text-blue-400 transition-colors"
+  >
+    Privacy Policy
+  </Link>
+
+  <Link
+    href="/terms"
+    className="hover:text-blue-400 transition-colors"
+  >
+    Terms & Conditions
+  </Link>
+</div>
           </div>
         </div>
       </div>
