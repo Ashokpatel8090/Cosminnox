@@ -740,7 +740,8 @@ const fadeUp = {
     transition: {
       delay: i * 0.1,
       duration: 0.6,
-      ease: "easeOut",
+      // ease: "easeOut",
+      ease: [0.16, 1, 0.3, 1], // easeOut-ish curve
     },
   }),
 }
