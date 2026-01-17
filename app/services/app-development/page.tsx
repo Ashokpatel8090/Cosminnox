@@ -710,12 +710,13 @@ import {
   Smartphone,
   CheckCircle2,
   Apple,
-  Android,
   Layers,
   Shield,
   Rocket,
 } from "lucide-react"
-import { FaAndroid, FaApple } from "react-icons/fa"
+
+import { FaAndroid } from "react-icons/fa"
+
 import {
   SiSwift,
   SiKotlin,
