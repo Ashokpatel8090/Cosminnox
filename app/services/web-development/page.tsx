@@ -417,6 +417,7 @@
 // import { motion } from "framer-motion"
 // import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import Link from "next/link"
 import { useState, useEffect } from "react"
 
 
@@ -518,14 +519,20 @@ useEffect(() => {
 
 {/* CTA buttons */}
 <div className="flex flex-wrap justify-center gap-4">
-  <button className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-xl hover:shadow-blue-500/40 transition">
-    Get Started
-  </button>
+      {/* Get Started */}
+      <Link href="/contact">
+        <button className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold hover:shadow-xl hover:shadow-blue-500/40 transition">
+          Get Started
+        </button>
+      </Link>
 
-  <button className="px-8 py-4 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-100 dark:text-slate-300 font-semibold hover:shadow-xl hover:shadow-blue-100/40 dark:hover:bg-slate-800 transition">
-    View Our Work
-  </button>
-</div>
+      {/* View Our Work */}
+      <Link href="/services">
+        <button className="px-8 py-4 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-100 dark:text-slate-300 font-semibold hover:shadow-xl hover:shadow-blue-100/40 dark:hover:bg-slate-800 transition">
+          View Our Work
+        </button>
+      </Link>
+    </div>
 
         </motion.div>
       </section>
@@ -668,7 +675,7 @@ useEffect(() => {
 
 
       {/* ================= TECH STACK ================= */}
-      <div className="bg-slate-100 py-24 px-6">
+      <div className="bg-slate-100 py-10 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial="hidden"
@@ -708,7 +715,7 @@ useEffect(() => {
       </div>
 
       {/* ================= PROCESS ================= */}
-      <div className="py-24 px-6">
+      <div className="py-14 px-6">
   <div className="max-w-6xl mx-auto">
     <motion.h2
       initial="hidden"
@@ -754,7 +761,7 @@ useEffect(() => {
 
 
       {/* ================= FAQ ================= */}
-      <div className="bg-white py-24 px-6">
+      <div className="bg-white py-10 px-6">
         <div className="max-w-4xl mx-auto">
           <motion.h2
             initial="hidden"

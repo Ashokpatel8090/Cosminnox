@@ -371,8 +371,8 @@ export default function HomeHighlights() {
             </h2>
 
             {/* Text color changed from slate-300 to slate-700 for readability on a light background */}
-            <p className="text-lg md:text-xl text-slate-700 mb-8">
-              Five integrated layers that replace scattered tools,
+            <p className="text-lg md:text-xl text-slate-700 mb-6">
+              Built for founders who want clarity over complexity, this system aligns strategy, execution, and growth into one operating rhythm. Five integrated layers that replace scattered tools,
               expensive advisors, and trial-and-error execution.
             </p>
           </motion.div>

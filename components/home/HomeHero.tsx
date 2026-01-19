@@ -97,7 +97,7 @@ group-hover:bg-black/20" />
 
   {/* TEXT ON TOP */}
   <div className="absolute top-3 left-4 z-10 text-white font-semibold">
-    Dashboard
+    Contact Us
   </div>
 </motion.div>
 
