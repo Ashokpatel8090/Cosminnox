@@ -37,7 +37,7 @@ export default function PlacementsIntro() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="text-center mb-20 mt-20"
+        className="text-center mb-20 "
       >
         <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
           Placements & Career Development
