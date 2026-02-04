@@ -229,6 +229,10 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Star } from "lucide-react"
+import { useUserMode } from "@/context/UserModeContext"
+
+
+
 
 // ================= TESTIMONIALS DATA =================
 const testimonials = [
@@ -272,9 +276,8 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 }
 
-// ================= COMPONENT =================
-export default function HomeCTA() {
-  return (
+function FounderCTA(){
+    return (
     <section className="py-14 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -406,3 +409,59 @@ export default function HomeCTA() {
     </section>
   )
 }
+function StudentCTA() {
+  return (
+    <section className="py-16 bg-gray-100">
+      <div className="max-w-7xl mx-auto px-4">
+
+        <div className="text-center mb-14">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">
+            Students who turned{" "}
+            <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+              skills into careers
+            </span>
+          </h2>
+          <p className="mt-3 text-lg text-slate-600">
+            Real outcomes from real learners on Cosminnox
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            {
+              quote: "Got my first AI internship within 4 months of joining.",
+              name: "Ankit Kumar",
+              title: "AI Intern, Bangalore",
+            },
+            {
+              quote: "Mentorship and projects helped me crack startup interviews.",
+              name: "Sneha Gupta",
+              title: "Frontend Developer",
+            },
+            {
+              quote: "Cosminnox gave me direction when I was totally confused.",
+              name: "Rohit Singh",
+              title: "Final Year CS Student",
+            },
+          ].map((t, i) => (
+            <div
+              key={i}
+              className="p-8 rounded-3xl bg-white border border-slate-200 shadow-lg"
+            >
+              <p className="italic text-slate-700 mb-6">
+                “{t.quote}”
+              </p>
+              <p className="font-bold text-slate-900">{t.name}</p>
+              <p className="text-sm text-slate-500">{t.title}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+export default function HomeCTA() {
+  const { mode } = useUserMode()
+  return mode === "student" ? <StudentCTA /> : <FounderCTA />
+}
+
