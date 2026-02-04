@@ -4,69 +4,118 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { useUserMode } from "@/context/UserModeContext"
+import NetworkGraphicStudent from "./NetworkGraphicStudent"
+import NetworkGraphicFounder from "./NetworkGraphicFounder"
 import NetworkGraphic from "./NetworkGraphic" 
 
 export default function HomeHero() {
+  const { mode, setMode } = useUserMode()
   return (
   
     <section className="relative min-h-[88vh] flex items-center overflow-hidden bg-[#0b0f1a] -mt-3">
-      
-      {/* 3D Network Graphic for Background Animation */}
-      <NetworkGraphic />
-      
-      {/* Gradient blobs and Header/Navigation overlay (z-index 20/30) */}
-      <div className="absolute inset-0 z-10">
-        <div className="absolute -top-32 -left-32 w-[30rem] h-[30rem] bg-blue-600/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 -right-32 w-[30rem] h-[30rem] bg-cyan-500/20 rounded-full blur-3xl" />
-      </div>
+  
+  {/* 3D Network Graphic */}
+  {mode === "student" ? <NetworkGraphicStudent /> : <NetworkGraphicFounder />}
+  {/* <NetworkGraphic /> */}
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center w-full">
-        {/* LEFT CONTENT - Always shown */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          // ADDED: mb-10 on small screens to separate content from what follows, 
-          // and lg:mb-0 to remove it on desktop.
-          className="mb-10 lg:mb-0" 
-        >
-          <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-tight text-white mb-6">
-  India’s
-  <br />
-  <span className="block bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-    Founder Operating System
-  </span>
-</h1>
+  {/* Background blobs */}
+  <div className="absolute inset-0 z-10">
+    <div className="absolute -top-32 -left-32 w-[30rem] h-[30rem] bg-blue-600/20 rounded-full blur-3xl" />
+    <div className="absolute bottom-0 -right-32 w-[30rem] h-[30rem] bg-cyan-500/20 rounded-full blur-3xl" />
+  </div>
 
-          <p className="text-lg text-slate-300 max-w-xl mb-10">
-  Fortune-500 grade mentorship, execution tools, and founder infrastructure —
-  accessible to anyone serious about building.
-  <span className="block mt-2 text-cyan-400 font-semibold">
-    All for $1 a day.
-  </span>
+  <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center w-full">
+
+    {/* LEFT CONTENT */}
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9 }}
+      className="mb-10 lg:mb-0"
+    >
+
+      {/* 🔹 STEP LABEL */}
+     <p className="text-base sm:text-2xl text-white mb-2 ml-2 uppercase ">
 </p>
 
-          <div className="flex gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center px-7 py-4 rounded-xl
-              bg-gradient-to-r from-blue-500 to-cyan-500
-              text-white font-semibold shadow-lg hover:scale-105 transition"
-            >
-              Join for $1 / day
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
+      {/* 🔹 CAPSULE */}
+      <div className="mb-5 text-3xl">
+        <div
+          className="
+            inline-flex items-center gap-3
+            rounded-full
+            bg-white/15 backdrop-blur-lg
+            px-4 py-2
+            border border-white/25
+            shadow-[0_8px_30px_rgba(0,0,0,0.35)]
+          "
+        >
+<button
+  onClick={() => setMode("student")}
+  className={`
+    px-8 py-3 rounded-full
+    font-semibold
+    transition-all duration-300
+    ${
+      mode === "student"
+        ? "bg-purple-600 text-white text-base shadow-xl scale-[1.02]"
+        : "text-purple-400 text-2xl hover:text-white hover:bg-white/10"
+    }
+  `}
+>
+   I am a Student
+</button>
 
-            <Link
-              href="/about"
-              className="inline-flex items-center px-7 py-4 rounded-xl
-              border border-cyan-400/40 text-cyan-300
-              hover:bg-cyan-400/10 transition"
-            >
-              How It Works
-            </Link>
-          </div>
-        </motion.div>
+<button
+  onClick={() => setMode("founder")}
+  className={`
+    px-8 py-3 rounded-full
+    font-semibold
+    transition-all duration-300
+    ${
+      mode === "founder"
+        ? "bg-cyan-500 text-white text-base shadow-xl scale-[1.02]"
+        : "text-cyan-300 text-2xl hover:text-white hover:bg-white/10"
+    }
+  `}
+>
+  I am a Founder
+</button>
+        </div>
+      </div>
+
+      {/* 🔹 CURRENT MODE INDICATOR */}
+      {/* <p className="text-xs uppercase tracking-widest text-white/50 mb-3">
+        You are viewing as{" "}
+        <span className="text-white font-semibold">
+          {mode === "student" ? "Student" : "Founder"}
+        </span>
+      </p> */}
+
+      {/* 🔹 HERO HEADING */}
+      <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-tight text-white mb-6">
+        {mode === "student" ? (
+          <>
+            Pioneer Your Future with
+            <br />
+            <span className="block bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              AI-Led Learning
+            </span>
+          </>
+        ) : (
+          <>
+            India’s
+            <br />
+            <span className="block bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              Founder Operating System
+            </span>
+          </>
+        )}
+      </h1>
+
+      {/* CTA / Subtext stays same below */}
+    </motion.div>
 
         {/* RIGHT FLOATING SCREENS - Only appears on large screens (desktop) */}
         <div className="relative hidden lg:block h-[420px]">

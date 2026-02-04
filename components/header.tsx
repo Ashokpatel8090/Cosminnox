@@ -160,14 +160,25 @@ import { useState, useEffect } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
+import { useUserMode } from "@/context/UserModeContext"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useSelector, useDispatch } from "react-redux"
+import type { RootState } from "@/store"
+import { logOut } from "@/store/slices/authSlice"
 
 export default function Header() {
+  const dispatch = useDispatch()
+  const { mode } = useUserMode()
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [platformOpen, setPlatformOpen] = useState(false)
   const pathname = usePathname()
+  // const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const isLoggedIn = useSelector(
+  (state: RootState) => state.auth.isLoggedIn
+)
+
 
   // ===================== SCROLL EFFECT =====================
   useEffect(() => {
@@ -176,21 +187,50 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  // ===================== NAV DATA =====================
-  const navItems = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Services", href: "/services" },
-    { label: "Careers", href: "/careers" },
-    { label: "Contact", href: "/contact" },
-  ]
 
-  const platformItems = [
-    { label: "Governance", href: "/governance" },
-    { label: "Join", href: "/join" },
-    { label: "Modules", href: "/modules" },
-    { label: "Pricing", href: "/pricing" },
-  ]
+const handleLogout = () => {
+  // side-effects yahan honge
+  localStorage.removeItem("access_token")
+  localStorage.removeItem("refresh_token")
+
+  dispatch(logOut())
+
+  // full app reset (safe)
+  window.location.href = "/"
+}
+  // ===================== NAV DATA =====================
+  const navItems =
+    mode === "student"
+      ? [
+        { label: "Home", href: "/" },
+        { label: "Learning", href: "/learning" },
+        { label: "Courses", href: "/courses" },
+        { label: "Community", href: "/community" },
+        { label: "Careers", href: "/careers" },
+        { label: "Contact", href: "/contact" },
+      ]
+      : [
+        { label: "Home", href: "/" },
+        { label: "About", href: "/about" },
+        { label: "Services", href: "/services" },
+        { label: "Careers", href: "/careers" },
+        { label: "Contact", href: "/contact" },
+      ]
+  const platformItems =
+    mode === "student"
+      ? [
+        { label: "My Dashboard", href: "/dashboard" },
+        { label: "Mentorship", href: "/mentorship" },
+        { label: "Live Sessions", href: "/live" },
+        { label: "Pricing", href: "/pricing" },
+      ]
+      : [
+        { label: "Governance", href: "/governance" },
+        { label: "Join", href: "/join" },
+        { label: "Modules", href: "/modules" },
+        { label: "Pricing", href: "/pricing" },
+
+      ]
 
   const isPlatformActive =
     pathname === "/platform" ||
@@ -217,95 +257,112 @@ export default function Header() {
 
           {/* ===================== DESKTOP ===================== */}
           {/* ===================== DESKTOP ===================== */}
-<div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-8">
 
-  {/* LEFT NAV ITEMS (Before Platform) */}
-  {navItems
-    .filter(item =>
-      item.label === "Home" ||
-      item.label === "About" ||
-      item.label === "Services"
-    )
-    .map(item => (
-      <Link
-        key={item.href}
-        href={item.href}
-        className={`font-semibold transition-colors
+            {/* LEFT NAV ITEMS (Before Platform) */}
+            {navItems
+              .filter(item =>
+                item.label === "Home" ||
+                item.label === "About" ||
+                item.label === "Services"
+              )
+              .map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`font-semibold transition-colors
           ${pathname === item.href
-            ? "text-blue-600"
-            : "text-slate-800 hover:text-blue-600"}
+                      ? "text-blue-600"
+                      : "text-slate-800 hover:text-blue-600"}
         `}
-      >
-        {item.label}
-      </Link>
-    ))}
+                >
+                  {item.label}
+                </Link>
+              ))}
 
-  {/* PLATFORM MENU (Inserted between Services & Careers) */}
-  <div className="relative group">
-    <Link
-      href="/platform"
-      className={`flex items-center gap-1 font-semibold transition-colors
+            {/* PLATFORM MENU (Inserted between Services & Careers) */}
+            <div className="relative group">
+              <Link
+                href="/platform"
+                className={`flex items-center gap-1 font-semibold transition-colors
         ${isPlatformActive
-          ? "text-blue-600"
-          : "text-slate-800 hover:text-blue-600"}
+                    ? "text-blue-600"
+                    : "text-slate-800 hover:text-blue-600"}
       `}
-    >
-      Platform
-      <ChevronDown
-        size={16}
-        className={`transition-transform duration-300
+              >
+                {mode === "student" ? "Learning Hub" : "Platform"}
+                <ChevronDown
+                  size={16}
+                  className={`transition-transform duration-300
           ${isPlatformActive ? "rotate-180" : "group-hover:rotate-180"}
         `}
-      />
-    </Link>
+                />
+              </Link>
 
-    {/* DROPDOWN */}
-    <div
-      className="absolute left-0 top-full mt-4 w-52 rounded-xl
+              {/* DROPDOWN */}
+              <div
+                className="absolute left-0 top-full mt-4 w-52 rounded-xl
                  bg-slate-700 shadow-xl border border-slate-600
                  opacity-0 invisible translate-y-2
                  group-hover:opacity-100 group-hover:visible
                  group-hover:translate-y-0
                  transition-all duration-200"
-    >
-      <div className="p-2 flex flex-col">
-        {platformItems.map(item => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors
+              >
+                <div className="p-2 flex flex-col">
+                  {platformItems.map(item => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors
               ${pathname === item.href
-                ? "bg-slate-600 text-white"
-                : "text-white hover:bg-slate-800"}
+                          ? "bg-slate-600 text-white"
+                          : "text-white hover:bg-slate-800"}
             `}
-          >
-            {item.label}
-          </Link>
-        ))}
-      </div>
-    </div>
-  </div>
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
 
-  {/* RIGHT NAV ITEMS (After Platform) */}
-  {navItems
-    .filter(item =>
-      item.label === "Careers" ||
-      item.label === "Contact"
-    )
-    .map(item => (
-      <Link
-        key={item.href}
-        href={item.href}
-        className={`font-semibold transition-colors
+            {/* RIGHT NAV ITEMS (After Platform) */}
+            {navItems
+              .filter(item =>
+                item.label === "Careers" ||
+                item.label === "Contact"
+              )
+              .map(item => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`font-semibold transition-colors
           ${pathname === item.href
-            ? "text-blue-600"
-            : "text-slate-800 hover:text-blue-600"}
+                      ? "text-blue-600"
+                      : "text-slate-800 hover:text-blue-600"}
         `}
-      >
-        {item.label}
-      </Link>
-    ))}
-</div>
+                >
+                  {item.label}
+                </Link>
+              ))}
+            {isLoggedIn ? (
+              <button
+                onClick={handleLogout}
+                className="ml-4 px-5 py-2 rounded-xl font-semibold
+               bg-red-500 text-white hover:bg-red-600 transition"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                href="/signup"
+                className="ml-4 px-5 py-2 rounded-xl font-semibold
+               bg-blue-600 text-white hover:bg-blue-700 transition"
+              >
+                Sign Up
+              </Link>
+            )}
+          </div>
 
 
           {/* ===================== MOBILE BUTTON ===================== */}
@@ -374,6 +431,28 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
+                {/* for mobile view */}
+              {isLoggedIn ? (
+                <button
+                  onClick={() => {
+                    handleLogout()
+                    setIsOpen(false)
+                  }}
+                  className="mt-4 w-full py-3 rounded-lg font-semibold
+               bg-red-500 text-white"
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link
+                  href="/signup"
+                  onClick={() => setIsOpen(false)}
+                  className="mt-4 w-full text-center py-3 rounded-lg font-semibold
+               bg-blue-600 text-white"
+                >
+                  Sign Up
+                </Link>
+              )}
             </div>
           </motion.div>
         )}

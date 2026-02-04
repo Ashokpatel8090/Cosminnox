@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import ClientLayout from "./client-layout"
+import { UserModeProvider } from "@/context/UserModeContext"
+import { Toaster } from "react-hot-toast"
 
 const geist = Geist({
   subsets: ["latin"],
@@ -39,6 +41,29 @@ export default function RootLayout({
 
       <body className={`${geist.className}  antialiased`}>
       {/* <body> */}
+      <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              background: "#020617",
+              color: "#ffffff",
+              border: "1px solid rgba(255,255,255,0.1)",
+            },
+            success: {
+              iconTheme: {
+                primary: "#facc15",
+                secondary: "#020617",
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: "#ef4444",
+                secondary: "#020617",
+              },
+            },
+          }}
+        />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
