@@ -32,14 +32,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="smooth-scroll">
+    <html lang="en" className="smooth-scroll overflow-x-hidden">
       <head>
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://vitals.vercel-analytics.com" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
       </head>
 
-      <body className={`${geist.className}  antialiased`}>
+      <body className={`${geist.className} antialiased overflow-x-hidden`}>
       {/* <body> */}
       <Toaster
           position="top-right"
