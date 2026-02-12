@@ -141,6 +141,11 @@ export default function LoginPage() {
       localStorage.setItem("access_token", access_token)
       localStorage.setItem("refresh_token", refresh_token)
 
+      /* Store token in cookie for middleware */
+      // document.cookie = `access_token=${access_token}; path=/`
+      document.cookie = `access_token=${access_token}; path=/; SameSite=Lax`
+
+
       dispatch(
         loginSuccess({
           accessToken: access_token,
