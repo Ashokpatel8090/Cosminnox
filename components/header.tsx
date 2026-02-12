@@ -465,10 +465,163 @@
 
 
 
+// "use client"
+
+// import { useState, useEffect } from "react"
+// import { Menu, X, ChevronDown } from "lucide-react"
+// import { motion, AnimatePresence } from "framer-motion"
+// import Image from "next/image"
+// import { useUserMode } from "@/context/UserModeContext"
+// import Link from "next/link"
+// import { usePathname } from "next/navigation"
+// import UserMenu from "@/components/UserMenu"
+
+// export default function Header() {
+//   const { mode } = useUserMode()
+//   const [isOpen, setIsOpen] = useState(false)
+//   const [isScrolled, setIsScrolled] = useState(false)
+//   const [platformOpen, setPlatformOpen] = useState(false)
+//   const pathname = usePathname()
+
+//   useEffect(() => {
+//     const onScroll = () => setIsScrolled(window.scrollY > 40)
+//     window.addEventListener("scroll", onScroll, { passive: true })
+//     return () => window.removeEventListener("scroll", onScroll)
+//   }, [])
+
+//   const navItems =
+//     mode === "student"
+//       ? [
+//           { label: "Home", href: "/" },
+//           { label: "Learning", href: "/learning" },
+//           { label: "Courses", href: "/courses" },
+//           { label: "Community", href: "/community" },
+//           { label: "Careers", href: "/careers" },
+//           { label: "Contact", href: "/contact" },
+//         ]
+//       : [
+//           { label: "Home", href: "/" },
+//           { label: "About", href: "/about" },
+//           { label: "Services", href: "/services" },
+//           { label: "Careers", href: "/careers" },
+//           { label: "Contact", href: "/contact" },
+//         ]
+
+//   const platformItems =
+//     mode === "student"
+//       ? [
+//           { label: "My Dashboard", href: "/dashboard" },
+//           { label: "Mentorship", href: "/mentorship" },
+//           { label: "Live Sessions", href: "/live" },
+//           { label: "Pricing", href: "/pricing" },
+//         ]
+//       : [
+//           { label: "Governance", href: "/governance" },
+//           { label: "Join", href: "/join" },
+//           { label: "Modules", href: "/modules" },
+//           { label: "Pricing", href: "/pricing" },
+//         ]
+
+//   const isPlatformActive =
+//     pathname === "/platform" ||
+//     platformItems.some(item => pathname === item.href)
+
+//   return (
+//     <header
+//       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
+//         ${
+//           isScrolled
+//             ? "bg-white/90 backdrop-blur shadow-md"
+//             : "bg-white/70 backdrop-blur"
+//         }
+//       `}
+//     >
+//       <nav className="max-w-7xl mx-auto px-4">
+//         <div className="flex items-center justify-between h-[65px]">
+
+//           <Link href="/" className="flex items-center gap-3 font-bold text-xl">
+//             <Image src="/logo.png" alt="COSMINNOX" width={44} height={44} />
+//             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
+//               COSMINNOX
+//             </span>
+//           </Link>
+
+//           <div className="hidden md:flex items-center gap-5">
+
+//             {navItems.slice(0, 3).map(item => (
+//               <Link
+//                 key={item.href}
+//                 href={item.href}
+//                 className={`font-semibold ${
+//                   pathname === item.href
+//                     ? "text-blue-600"
+//                     : "text-slate-800 hover:text-blue-600"
+//                 }`}
+//               >
+//                 {item.label}
+//               </Link>
+//             ))}
+
+//             <div className="relative group">
+//               <Link
+//                 href="/platform"
+//                 className={`flex items-center gap-1 font-semibold ${
+//                   isPlatformActive
+//                     ? "text-blue-600"
+//                     : "text-slate-800 hover:text-blue-600"
+//                 }`}
+//               >
+//                 {mode === "student" ? "Learning Hub" : "Platform"}
+//                 <ChevronDown size={16} />
+//               </Link>
+
+//               <div className="absolute left-0 top-full mt-4 w-52 rounded-xl bg-slate-800 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+//                 <div className="p-2 flex flex-col">
+//                   {platformItems.map(item => (
+//                     <Link
+//                       key={item.href}
+//                       href={item.href}
+//                       className="px-4 py-2 rounded-lg text-sm text-white hover:bg-slate-800"
+//                     >
+//                       {item.label}
+//                     </Link>
+//                   ))}
+//                 </div>
+//               </div>
+//             </div>
+
+//             {navItems.slice(3).map(item => (
+//               <Link
+//                 key={item.href}
+//                 href={item.href}
+//                 className="font-semibold text-slate-900 hover:text-blue-600"
+//               >
+//                 {item.label}
+//               </Link>
+//             ))}
+
+//             {/* USER MENU */}
+//             <UserMenu />
+//           </div>
+
+//           <button
+//             onClick={() => setIsOpen(!isOpen)}
+//             className="md:hidden p-2 rounded-lg hover:bg-gray-200"
+//           >
+//             {isOpen ? <X size={24} /> : <Menu size={24} />}
+//           </button>
+//         </div>
+//       </nav>
+//     </header>
+//   )
+// }
+
+
+
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, ChevronDown } from "lucide-react"
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { useUserMode } from "@/context/UserModeContext"
@@ -480,14 +633,21 @@ export default function Header() {
   const { mode } = useUserMode()
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
-  const [platformOpen, setPlatformOpen] = useState(false)
+  const [mobilePlatformOpen, setMobilePlatformOpen] = useState(false)
   const pathname = usePathname()
 
+  // Change background on scroll
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 40)
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false)
+    setMobilePlatformOpen(false)
+  }, [pathname])
 
   const navItems =
     mode === "student"
@@ -524,64 +684,58 @@ export default function Header() {
 
   const isPlatformActive =
     pathname === "/platform" ||
-    platformItems.some(item => pathname === item.href)
+    platformItems.some((item) => pathname === item.href)
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
-        ${
-          isScrolled
-            ? "bg-white/90 backdrop-blur shadow-md"
-            : "bg-white/70 backdrop-blur"
-        }
-      `}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/90 backdrop-blur-md shadow-md"
+          : "bg-white/70 backdrop-blur-sm"
+      }`}
     >
-      <nav className="max-w-7xl mx-auto px-4">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[65px]">
-
-          <Link href="/" className="flex items-center gap-3 font-bold text-xl">
-            <Image src="/logo.png" alt="COSMINNOX" width={44} height={44} />
+          {/* LOGO */}
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 font-bold text-lg sm:text-xl shrink-0">
+            <Image src="/logo.png" alt="COSMINNOX" width={38} height={38} className="sm:w-[44px] sm:h-[44px]" />
             <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent">
               COSMINNOX
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-5">
-
-            {navItems.slice(0, 3).map(item => (
+          {/* DESKTOP NAVIGATION (Visible on Tablets/Desktop) */}
+          <div className="hidden md:flex items-center gap-4 lg:gap-6">
+            {navItems.slice(0, 3).map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`font-semibold ${
-                  pathname === item.href
-                    ? "text-blue-600"
-                    : "text-slate-800 hover:text-blue-600"
+                className={`font-semibold text-sm lg:text-base transition-colors ${
+                  pathname === item.href ? "text-blue-600" : "text-slate-800 hover:text-blue-600"
                 }`}
               >
                 {item.label}
               </Link>
             ))}
 
+            {/* Platform Dropdown */}
             <div className="relative group">
               <Link
                 href="/platform"
-                className={`flex items-center gap-1 font-semibold ${
-                  isPlatformActive
-                    ? "text-blue-600"
-                    : "text-slate-800 hover:text-blue-600"
+                className={`flex items-center gap-1 font-semibold text-sm lg:text-base ${
+                  isPlatformActive ? "text-blue-600" : "text-slate-800 hover:text-blue-600"
                 }`}
               >
                 {mode === "student" ? "Learning Hub" : "Platform"}
-                <ChevronDown size={16} />
+                <ChevronDown size={14} />
               </Link>
-
-              <div className="absolute left-0 top-full mt-4 w-52 rounded-xl bg-slate-800 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                <div className="p-2 flex flex-col">
-                  {platformItems.map(item => (
+              <div className="absolute left-0 top-full pt-4 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="bg-slate-900 rounded-xl shadow-xl p-2 flex flex-col border border-slate-700">
+                  {platformItems.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="px-4 py-2 rounded-lg text-sm text-white hover:bg-slate-800"
+                      className="px-4 py-2 rounded-lg text-sm text-slate-200 hover:bg-slate-800 hover:text-white transition-colors"
                     >
                       {item.label}
                     </Link>
@@ -590,28 +744,111 @@ export default function Header() {
               </div>
             </div>
 
-            {navItems.slice(3).map(item => (
+            {navItems.slice(3).map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="font-semibold text-slate-900 hover:text-blue-600"
+                className="font-semibold text-sm lg:text-base text-slate-800 hover:text-blue-600 transition-colors"
               >
                 {item.label}
               </Link>
             ))}
 
-            {/* USER MENU */}
             <UserMenu />
           </div>
 
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-200"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* MOBILE/TABLET TOGGLE BUTTON */}
+          <div className="flex items-center gap-4 md:hidden">
+            <UserMenu /> {/* Small screen user menu */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 rounded-lg text-slate-800 hover:bg-slate-100 transition-colors"
+              aria-label="Toggle Menu"
+            >
+              {isOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
         </div>
       </nav>
+
+      {/* MOBILE MENU OVERLAY */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white border-t border-slate-100 overflow-hidden shadow-xl"
+          >
+            <div className="px-4 py-6 flex flex-col gap-4 max-h-[calc(100vh-65px)] overflow-y-auto">
+              {navItems.slice(0, 3).map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`text-lg font-medium px-2 py-1 ${
+                    pathname === item.href ? "text-blue-600" : "text-slate-700"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+
+              {/* Mobile Platform Expandable */}
+              <div>
+                <button
+                  onClick={() => setMobilePlatformOpen(!mobilePlatformOpen)}
+                  className="w-full flex items-center justify-between text-lg font-medium px-2 py-1 text-slate-700"
+                >
+                  <span>{mode === "student" ? "Learning Hub" : "Platform"}</span>
+                  <ChevronRight 
+                    size={20} 
+                    className={`transition-transform duration-200 ${mobilePlatformOpen ? "rotate-90" : ""}`} 
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobilePlatformOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -10 }}
+                      className="ml-6 mt-2 flex flex-col gap-3 border-l-2 border-slate-100 pl-4"
+                    >
+                      {platformItems.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="text-slate-600 text-base"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {navItems.slice(3).map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-lg font-medium px-2 py-1 text-slate-700"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              
+              <div className="mt-4 pt-4 border-t border-slate-100">
+                <Link 
+                  href="/contact" 
+                  className="block w-full text-center bg-blue-600 text-white py-3 rounded-xl font-bold"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
