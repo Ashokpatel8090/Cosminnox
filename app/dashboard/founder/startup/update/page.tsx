@@ -198,7 +198,10 @@
 
 
 
-"use client"
+"use client";
+
+export const dynamic = "force-dynamic";
+
 
 import { useEffect, useState, ChangeEvent } from "react"
 import { useDispatch, useSelector } from "react-redux"
