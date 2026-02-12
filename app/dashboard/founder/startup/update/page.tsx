@@ -528,6 +528,7 @@
 "use client";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 import { useEffect, useState, ChangeEvent } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -536,7 +537,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import type { RootState, AppDispatch } from "@/store"
 import { fetchStartups, updateStartup } from "@/store/slices/startupSlice"
 
-/* ---------- Form Row Component ---------- */
+/* ---------- Form Row ---------- */
 function FormRow({
   label,
   children,
@@ -556,13 +557,16 @@ function FormRow({
   )
 }
 
-/* ---------- Main Page ---------- */
 export default function UpdateStartupPage() {
   const dispatch = useDispatch<AppDispatch>()
   const router = useRouter()
   const params = useSearchParams()
 
-  const startupId = params.get("startup_id")
+  const startupId =
+    typeof window !== "undefined"
+      ? params.get("startup_id")
+      : null
+
   const startups =
     useSelector((state: RootState) => state.startup?.startups) || []
 
@@ -581,12 +585,12 @@ export default function UpdateStartupPage() {
     joined_at: "",
   })
 
-  /* ---------- Load startup list ---------- */
+  /* Load startups */
   useEffect(() => {
     dispatch(fetchStartups())
   }, [dispatch])
 
-  /* ---------- Prefill form ---------- */
+  /* Prefill form */
   useEffect(() => {
     if (!startupId || !startups.length) return
 
@@ -611,7 +615,7 @@ export default function UpdateStartupPage() {
     }
   }, [startups, startupId])
 
-  /* ---------- Input handler ---------- */
+  /* Input change */
   const handleChange = (
     e: ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -630,7 +634,7 @@ export default function UpdateStartupPage() {
     }))
   }
 
-  /* ---------- Submit ---------- */
+  /* Submit */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
@@ -655,7 +659,6 @@ export default function UpdateStartupPage() {
     }
 
     try {
-      // @ts-ignore
       await dispatch(
         updateStartup({ startup_id: startupId, payload })
       ).unwrap()
@@ -668,7 +671,6 @@ export default function UpdateStartupPage() {
     }
   }
 
-  /* ---------- UI ---------- */
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6">
       <div className="max-w-3xl mx-auto">
@@ -678,17 +680,16 @@ export default function UpdateStartupPage() {
             Update Startup
           </h1>
           <p className="mt-2 text-slate-600">
-            Edit the details of your venture below.
+            Edit your startup information.
           </p>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-sm border rounded-xl overflow-hidden"
+          className="bg-white shadow border rounded-xl overflow-hidden"
         >
-          <div className="p-6 sm:p-8 space-y-8">
+          <div className="p-6 space-y-8">
 
-            {/* Basic Info */}
             <section className="space-y-6">
               <h2 className="text-sm font-bold uppercase text-blue-600 border-b pb-2">
                 Basic Info
@@ -726,37 +727,9 @@ export default function UpdateStartupPage() {
               </FormRow>
             </section>
 
-            {/* Operations */}
-            <section className="space-y-6">
-              <h2 className="text-sm font-bold uppercase text-blue-600 border-b pb-2">
-                Operations
-              </h2>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <FormRow label="Country">
-                  <input
-                    name="incorporation_country"
-                    value={form.incorporation_country}
-                    onChange={handleChange}
-                    className="input-field"
-                  />
-                </FormRow>
-
-                <FormRow label="Founded Date">
-                  <input
-                    type="date"
-                    name="founded_year"
-                    value={form.founded_year}
-                    onChange={handleChange}
-                    className="input-field"
-                  />
-                </FormRow>
-              </div>
-            </section>
-
           </div>
 
-          <div className="bg-slate-50 px-8 py-6 border-t flex justify-end space-x-4">
+          <div className="bg-slate-50 px-8 py-6 border-t flex justify-end gap-4">
             <button type="button" onClick={() => router.back()}>
               Cancel
             </button>
