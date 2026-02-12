@@ -528,7 +528,7 @@
 "use client";
 
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// export const revalidate = 0;
 
 import { useEffect, useState, ChangeEvent } from "react"
 import { useDispatch, useSelector } from "react-redux"
